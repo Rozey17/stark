@@ -50,10 +50,31 @@ export const ENTRIES1 = [
   },
 ];
 const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
-  const images = [
-    "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg",
-    "https://images.pexels.com/photos/3049121/pexels-photo-3049121.jpeg",
-    "https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  const items = [
+    {
+      description: "new item",
+      price: 25.99,
+      image:
+        "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg",
+    },
+    {
+      description: "new item",
+      price: 25.99,
+      image:
+        "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg",
+    },
+    {
+      description: "new item",
+      price: 25.99,
+      image:
+        "https://images.pexels.com/photos/3049121/pexels-photo-3049121.jpeg",
+    },
+    {
+      description: "new item",
+      price: 25.99,
+      image:
+        "https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
   ];
   return (
     <SafeAreaView style={s``}>
@@ -67,8 +88,12 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <Text style={s`capitalize font-bold text-2xl mb-3`}>Best seller</Text>
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {images.map((image) => (
-                <Card image={image} />
+              {items.map((item) => (
+                <Card
+                  description={item.description}
+                  price={item.price}
+                  image={item.image}
+                />
               ))}
             </ScrollView>
           </View>
