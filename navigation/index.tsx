@@ -9,6 +9,12 @@ import { Fontisto } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import ShopScreen from "../screens/ShopScreen";
+import LivingScreen from "../screens/LivingScreen";
+import DiningScreen from "../screens/DiningScreen";
+import FurnitureScreen from "../screens/FurnitureScreen";
+import TechScreen from "../screens/TechScreen";
+import LightingScreen from "../screens/LightingScreen";
+
 const Navigation = () => {
   return (
     <NavigationContainer>
@@ -65,13 +71,41 @@ function ShopStackScreen() {
         component={ShopScreen}
         options={{ headerShown: false }}
       />
-      {/* <ShopStack.Screen
-        name="Home"
+      <ShopStack.Screen
+        name="Living"
         //@ts-ignore
 
-        component={HomeScreen}
+        component={LivingScreen}
         // options={{ headerShown: false }}
-      /> */}
+      />
+      <ShopStack.Screen
+        name="Dining"
+        //@ts-ignore
+
+        component={DiningScreen}
+        // options={{ headerShown: false }}
+      />
+      <ShopStack.Screen
+        name="Furniture"
+        //@ts-ignore
+
+        component={FurnitureScreen}
+        // options={{ headerShown: false }}
+      />
+      <ShopStack.Screen
+        name="Lighting"
+        //@ts-ignore
+
+        component={LightingScreen}
+        // options={{ headerShown: false }}
+      />
+      <ShopStack.Screen
+        name="Tech"
+        //@ts-ignore
+
+        component={TechScreen}
+        // options={{ headerShown: false }}
+      />
     </ShopStack.Navigator>
   );
 }

@@ -3,8 +3,9 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { s } from "react-native-wind";
 import { Entypo } from "@expo/vector-icons";
+import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 
-const ShopScreen = () => {
+const ShopScreen = ({ navigation }: NativeStackHeaderProps) => {
   return (
     <SafeAreaView style={s``}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -15,6 +16,7 @@ const ShopScreen = () => {
         </View>
         <View style={s`p-3 space-y-2`}>
           <Pressable
+            onPress={() => navigation.navigate("Living")}
             style={s`bg-gray-200 mb-2 flex flex-row px-3 p-2 rounded justify-between `}
           >
             <View style={s` flex flex-row justify-between items-center`}>
@@ -34,6 +36,7 @@ const ShopScreen = () => {
             </View>
           </Pressable>
           <Pressable
+            onPress={() => navigation.navigate("Dining")}
             style={s`bg-gray-200 mb-2 flex flex-row px-3 p-2 rounded justify-between`}
           >
             <View style={s` flex flex-row justify-between items-center`}>
@@ -54,6 +57,7 @@ const ShopScreen = () => {
           </Pressable>
           <Pressable
             style={s`bg-gray-200 mb-2 flex flex-row px-3 p-2 rounded justify-between`}
+            onPress={() => navigation.navigate("Furniture")}
           >
             <View style={s` flex flex-row justify-between items-center`}>
               <Image
@@ -73,6 +77,7 @@ const ShopScreen = () => {
           </Pressable>
           <Pressable
             style={s`bg-gray-200 mb-2 flex flex-row px-3 p-2 rounded justify-between`}
+            onPress={() => navigation.navigate("Lighting")}
           >
             <View style={s` flex flex-row justify-between items-center`}>
               <Image
