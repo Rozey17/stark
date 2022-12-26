@@ -83,7 +83,7 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Test"
+        name="Search"
         //@ts-ignore
 
         component={HomeScreen}
@@ -94,7 +94,7 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="WishList"
+        name="Wish List"
         //@ts-ignore
 
         component={HomeScreen}
@@ -104,7 +104,7 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="account"
+        name="Account"
         //@ts-ignore
 
         component={HomeScreen}

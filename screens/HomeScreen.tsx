@@ -1,10 +1,19 @@
-import { View, Text, ScrollView, Dimensions, Image } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Dimensions,
+  Image,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { s } from "react-native-wind";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, Feather } from "@expo/vector-icons";
 import Carousel, { ParallaxImage } from "react-native-snap-carousel";
+import Card from "../components/Card";
 
 const window = Dimensions.get("window");
 const PAGE_WIDTH = window.width;
@@ -41,7 +50,11 @@ export const ENTRIES1 = [
   },
 ];
 const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
-  const r = React.useRef<Carousel<number>>(null);
+  const images = [
+    "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg",
+    "https://images.pexels.com/photos/3049121/pexels-photo-3049121.jpeg",
+    "https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  ];
   return (
     <SafeAreaView style={s``}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -50,7 +63,16 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <Text>Stark</Text>
           <Entypo name="shopping-cart" size={24} color="black" />
         </View>
-        <View></View>
+        <View style={s`p-3 pr-0`}>
+          <Text style={s`capitalize font-bold text-2xl mb-3`}>Best seller</Text>
+          <View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {images.map((image) => (
+                <Card image={image} />
+              ))}
+            </ScrollView>
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
