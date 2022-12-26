@@ -8,6 +8,7 @@ import HomeScreen from "../screens/HomeScreen";
 import { Fontisto } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
+import ShopScreen from "../screens/ShopScreen";
 const Navigation = () => {
   return (
     <NavigationContainer>
@@ -33,6 +34,7 @@ function RootNavigator() {
 }
 
 const HomeStack = createNativeStackNavigator();
+const ShopStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
   return (
@@ -51,6 +53,26 @@ function HomeStackScreen() {
         // options={{ headerShown: false }}
       /> */}
     </HomeStack.Navigator>
+  );
+}
+
+function ShopStackScreen() {
+  return (
+    <ShopStack.Navigator>
+      <ShopStack.Screen
+        name="Shop"
+        //@ts-ignore
+        component={ShopScreen}
+        options={{ headerShown: false }}
+      />
+      {/* <ShopStack.Screen
+        name="Home"
+        //@ts-ignore
+
+        component={HomeScreen}
+        // options={{ headerShown: false }}
+      /> */}
+    </ShopStack.Navigator>
   );
 }
 
@@ -73,7 +95,7 @@ function BottomTabNavigator() {
         name="Shop"
         //@ts-ignore
 
-        component={HomeScreen}
+        component={ShopStackScreen}
         options={{
           tabBarIcon: () => (
             <Fontisto name="nav-icon-grid" size={24} color="#D3D3D3" />
