@@ -97,6 +97,7 @@ const ShopScreen = ({ navigation }: NativeStackHeaderProps) => {
           </Pressable>
           <Pressable
             style={s`bg-gray-200 mb-2 flex flex-row px-3 p-2 rounded justify-between`}
+            onPress={() => navigation.navigate("Tech")}
           >
             <View style={s` flex flex-row justify-between items-center`}>
               <Image
