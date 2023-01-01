@@ -14,6 +14,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Entypo, Feather } from "@expo/vector-icons";
 import Carousel, { ParallaxImage } from "react-native-snap-carousel";
 import Card from "../components/Card";
+import Slick from "react-native-slick";
+import ModalComponent from "../components/Modal";
 
 const window = Dimensions.get("window");
 const PAGE_WIDTH = window.width;
@@ -52,51 +54,95 @@ export const ENTRIES1 = [
 const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
   const items = [
     {
-      description: "new item",
+      name: "new",
       price: 25.99,
       image:
         "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg",
     },
     {
-      description: "new item",
+      name: "new item",
       price: 25.99,
       image:
         "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg",
     },
     {
-      description: "new item",
+      name: "item",
       price: 25.99,
       image:
         "https://images.pexels.com/photos/3049121/pexels-photo-3049121.jpeg",
     },
     {
-      description: "new item",
+      name: "new-item",
       price: 25.99,
       image:
         "https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
   ];
   return (
-    <SafeAreaView style={s``}>
+    <SafeAreaView style={s`bg-white h-full`}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        {/* header */}
         <View style={s`flex flex-row justify-between items-center p-3`}>
-          <Entypo name="menu" size={24} color="black" />
+          {/* <Entypo name="menu" size={24} color="black" /> */}
+          <ModalComponent />
           <Text>Stark</Text>
           <Entypo name="shopping-cart" size={24} color="black" />
         </View>
+        <Slick style={s`h-72`} showsButtons={true}>
+          <View>
+            <Image
+              source={{
+                uri: "https://images.pexels.com/photos/667838/pexels-photo-667838.jpeg",
+              }}
+              style={s`h-full w-full object-cover`}
+            />
+            {/* <Text>Hello Slick</Text> */}
+          </View>
+          <View>
+            <Image
+              source={{
+                uri: "https://images.pexels.com/photos/269218/pexels-photo-269218.jpeg",
+              }}
+              style={s`h-full w-full object-cover`}
+            />
+            {/* <Text>Beautiful</Text> */}
+          </View>
+          <View>
+            <Image
+              source={{
+                uri: "https://images.pexels.com/photos/3316918/pexels-photo-3316918.jpeg",
+              }}
+              style={s`h-full w-full object-cover`}
+            />
+            {/* <Text>And simple</Text> */}
+          </View>
+        </Slick>
         <View style={s`p-3 pr-0`}>
           <Text style={s`capitalize font-bold text-2xl mb-3`}>Best seller</Text>
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {items.map((item) => (
                 <Card
-                  description={item.description}
+                  key={item.name}
+                  name={item.name}
                   price={item.price}
                   image={item.image}
                 />
               ))}
             </ScrollView>
           </View>
+          {/* <View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {items.map((item) => (
+                <Card
+                  key={item.name}
+                  name={item.name}
+                  price={item.price}
+                  image={item.image}
+                />
+              ))}
+            </ScrollView>
+          </View> */}
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -4,11 +4,11 @@ import { s } from "react-native-wind";
 import { Entypo, Feather } from "@expo/vector-icons";
 
 const Card = ({
-  description,
+  name,
   price,
   image,
 }: {
-  description: string;
+  name: string;
   price: number;
   image: string;
 }) => {
@@ -40,7 +40,7 @@ const Card = ({
         </View>
       </View>
       <View>
-        <Text>{description}</Text>
+        <Text>{name}</Text>
         <Text>${price}</Text>
       </View>
       <View style={s`flex flex-row`}>
