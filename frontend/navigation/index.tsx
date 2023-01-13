@@ -14,6 +14,8 @@ import DiningScreen from "../screens/DiningScreen";
 import FurnitureScreen from "../screens/FurnitureScreen";
 import TechScreen from "../screens/TechScreen";
 import LightingScreen from "../screens/LightingScreen";
+import WishListScreen from "../screens/WishListScreen";
+import SearchScreen from "../screens/SearchScreen";
 
 const Navigation = () => {
   return (
@@ -144,20 +146,20 @@ function BottomTabNavigator() {
         name="Search"
         //@ts-ignore
 
-        component={HomeScreen}
+        component={SearchScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Feather name="search" size={size} color={color} />
           ),
           // tabBarShowLabel: false,
-          headerShown: false,
+          // headerShown: false,
         }}
       />
       <BottomTab.Screen
         name="Wish List"
         //@ts-ignore
 
-        component={HomeScreen}
+        component={WishListScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Entypo name="heart" size={size} color={color} />
