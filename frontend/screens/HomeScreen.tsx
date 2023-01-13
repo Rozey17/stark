@@ -16,6 +16,7 @@ import Carousel, { ParallaxImage } from "react-native-snap-carousel";
 import Card from "../components/Card";
 import Slick from "react-native-slick";
 import ModalComponent from "../components/Modal";
+import CategoryCard from "../components/CategoryCard";
 
 const window = Dimensions.get("window");
 const PAGE_WIDTH = window.width;
@@ -78,6 +79,39 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
         "https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
   ];
+
+  const categories = [
+    {
+      name: "Living",
+
+      image:
+        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+    },
+    {
+      name: "Dining",
+
+      image:
+        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+    },
+    {
+      name: "Lighting",
+
+      image:
+        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+    },
+    {
+      name: "Tech",
+
+      image:
+        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+    },
+    {
+      name: "Furniture",
+
+      image:
+        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+    },
+  ];
   return (
     <SafeAreaView style={s`bg-white h-full`}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -88,7 +122,50 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <Text>Stark</Text>
           <Entypo name="shopping-cart" size={24} color="black" />
         </View>
+        <Slick style={s`h-72`} showsButtons={true}>
+          <View>
+            <Image
+              source={{
+                uri: "https://images.pexels.com/photos/667838/pexels-photo-667838.jpeg",
+              }}
+              style={s`h-full w-full object-cover`}
+            />
+            {/* <Text>Hello Slick</Text> */}
+          </View>
+          <View>
+            <Image
+              source={{
+                uri: "https://images.pexels.com/photos/269218/pexels-photo-269218.jpeg",
+              }}
+              style={s`h-full w-full object-cover`}
+            />
+            {/* <Text>Beautiful</Text> */}
+          </View>
+          <View>
+            <Image
+              source={{
+                uri: "https://images.pexels.com/photos/3316918/pexels-photo-3316918.jpeg",
+              }}
+              style={s`h-full w-full object-cover`}
+            />
+            {/* <Text>And simple</Text> */}
+          </View>
+        </Slick>
 
+        <View style={s`p-3 pr-0`}>
+          <Text style={s`capitalize font-bold text-2xl mb-3`}>Categories</Text>
+          <View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {categories.map((item) => (
+                <CategoryCard
+                  key={item.name}
+                  name={item.name}
+                  image={item.image}
+                />
+              ))}
+            </ScrollView>
+          </View>
+        </View>
         <View style={s`p-3 pr-0`}>
           <Text style={s`capitalize font-bold text-2xl mb-3`}>Best seller</Text>
           <View>
