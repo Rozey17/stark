@@ -1,7 +1,7 @@
 import { View, Text, Pressable, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { s } from "react-native-wind";
-import { Entypo, Feather } from "@expo/vector-icons";
+import { Entypo, Feather, FontAwesome } from "@expo/vector-icons";
 
 const ProductCard = ({
   name,
@@ -12,17 +12,25 @@ const ProductCard = ({
   price: number;
   image: string;
 }) => {
+  const [selected, setSelected] = useState(false);
   return (
     <Pressable style={s``}>
-      <View style={s`relative h-72 w-60 mr-3 rounded overflow-hidden`}>
+      <View style={s`relative h-64 w-52 mr-3 rounded-lg overflow-hidden`}>
         <Image
           source={{
             uri: image,
           }}
-          style={s`object-cover h-full w-full `}
+          style={s`bg-contain h-full w-full `}
         />
-        <TouchableOpacity style={s`absolute top-2 right-2`}>
-          <Feather name="heart" size={24} color="black" />
+        <TouchableOpacity
+          onPress={() => setSelected(!selected)}
+          style={s`absolute top-2 right-2`}
+        >
+          {selected ? (
+            <FontAwesome name="heart" size={24} color="red" />
+          ) : (
+            <Feather name="heart" size={24} color="black" />
+          )}
         </TouchableOpacity>
 
         <TouchableOpacity style={s`absolute bottom-2 right-2`}>
@@ -40,7 +48,7 @@ const ProductCard = ({
         </View>
       </View>
       <View>
-        <Text>{name}</Text>
+        <Text style={s`w-full truncate`}>{name}</Text>
         <Text>${price}</Text>
       </View>
       <View style={s`flex flex-row`}>

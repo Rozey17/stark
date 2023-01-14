@@ -59,14 +59,18 @@ export const ENTRIES1 = [
 
 const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     client.fetch(`*[_type == 'category']`).then((res) => {
       setCategories(res);
     });
+    client.fetch(`*[_type == 'product']`).then((res) => {
+      setProducts(res);
+    });
   }, []);
 
-  console.log(categories);
+  // console.log(categories);
 
   const items = [
     {
@@ -129,7 +133,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
   // ];
 
   return (
-    <SafeAreaView style={s`bg-white h-full`}>
+    <SafeAreaView style={s` h-full`}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* header */}
         <View style={s`flex flex-row justify-between items-center p-3`}>
@@ -196,12 +200,12 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <Text style={s`capitalize font-bold text-2xl mb-3`}>Best seller</Text>
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {items.map((item) => (
+              {products.map((item) => (
                 <ProductCard
-                  key={item.name}
+                  key={item._id}
                   name={item.name}
                   price={item.price}
-                  image={item.image}
+                  image={urlForImage(item.image).url()}
                 />
               ))}
             </ScrollView>
