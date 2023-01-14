@@ -15,7 +15,7 @@ const ProductCard = ({
   const [selected, setSelected] = useState(false);
   return (
     <Pressable style={s``}>
-      <View style={s`relative h-64 w-52 mr-3 rounded-lg overflow-hidden`}>
+      <View style={s`relative h-64 w-52 mr-3 rounded-lg overflow-hidden mb-1`}>
         <Image
           source={{
             uri: image,
@@ -48,7 +48,7 @@ const ProductCard = ({
         </View>
       </View>
       <View>
-        <Text style={s`w-full truncate`}>{name}</Text>
+        <Text style={s`capitalize`}>{name}</Text>
         <Text>${price}</Text>
       </View>
       <View style={s`flex flex-row`}>

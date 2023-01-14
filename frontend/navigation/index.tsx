@@ -122,8 +122,8 @@ function BottomTabNavigator() {
         //@ts-ignore
         component={HomeStackScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="home" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <Feather name="home" size={20} color={color} />
           ),
           // tabBarShowLabel: false,
           headerShown: false,
@@ -135,8 +135,8 @@ function BottomTabNavigator() {
 
         component={ShopStackScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Fontisto name="nav-icon-grid" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <Fontisto name="nav-icon-grid" size={20} color={color} />
           ),
           // tabBarShowLabel: false,
           headerShown: false,
@@ -148,8 +148,8 @@ function BottomTabNavigator() {
 
         component={SearchScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="search" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <Feather name="search" size={20} color={color} />
           ),
           // tabBarShowLabel: false,
           // headerShown: false,
@@ -161,8 +161,8 @@ function BottomTabNavigator() {
 
         component={WishListScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Entypo name="heart" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <Entypo name="heart" size={20} color={color} />
           ),
           // tabBarShowLabel: false,
         }}
@@ -173,8 +173,8 @@ function BottomTabNavigator() {
 
         component={HomeScreen}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="user-alt" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="user-alt" size={20} color={color} />
           ),
           // tabBarShowLabel: false,
         }}

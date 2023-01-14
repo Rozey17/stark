@@ -5,16 +5,16 @@ import { s } from "react-native-wind";
 const CategoryCard = ({ image, name }: { image: string; name: string }) => {
   return (
     <Pressable>
-      <View style={s`h-24 w-24 mr-3 rounded-lg overflow-hidden`}>
+      <View style={s`h-24 w-24 mr-3 rounded-lg overflow-hidden mb-1`}>
         <Image
           source={{
             uri: image,
           }}
-          style={s`object-cover h-full w-full `}
+          style={s`object-contain h-full w-full `}
         />
       </View>
       <View>
-        <Text style={{ fontFamily: "" }}>{name}</Text>
+        <Text style={s`capitalize `}>{name}</Text>
       </View>
     </Pressable>
   );

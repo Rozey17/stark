@@ -70,68 +70,6 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
     });
   }, []);
 
-  // console.log(categories);
-
-  const items = [
-    {
-      name: "new",
-      price: 25.99,
-      image:
-        "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg",
-    },
-    {
-      name: "new item",
-      price: 25.99,
-      image:
-        "https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg",
-    },
-    {
-      name: "item",
-      price: 25.99,
-      image:
-        "https://images.pexels.com/photos/3049121/pexels-photo-3049121.jpeg",
-    },
-    {
-      name: "new-item",
-      price: 25.99,
-      image:
-        "https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-  ];
-
-  // const categories = [
-  //   {
-  //     name: "Living",
-
-  //     image:
-  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-  //   },
-  //   {
-  //     name: "Dining",
-
-  //     image:
-  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-  //   },
-  //   {
-  //     name: "Lighting",
-
-  //     image:
-  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-  //   },
-  //   {
-  //     name: "Tech",
-
-  //     image:
-  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-  //   },
-  //   {
-  //     name: "Furniture",
-
-  //     image:
-  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-  //   },
-  // ];
-
   return (
     <SafeAreaView style={s` h-full`}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -140,7 +78,14 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           {/* <Entypo name="menu" size={24} color="black" /> */}
           <ModalComponent />
           <Text>Stark</Text>
-          <Entypo name="shopping-cart" size={24} color="black" />
+          <View style={s`relative flex flex-row`}>
+            <View
+              style={s`h-5 w-5 bg-red-500 rounded-full left-1 z-10 items-center justify-center`}
+            >
+              <Text style={s`text-white font-semibold text-xs`}>0</Text>
+            </View>
+            <Entypo name="shopping-cart" size={24} color="black" />
+          </View>
         </View>
         <Slick
           style={s`h-72`}
@@ -156,20 +101,22 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <View>
             <Image
               source={{
-                uri: "https://images.pexels.com/photos/667838/pexels-photo-667838.jpeg",
+                uri: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.architecturaldigest.com%2Fstory%2Fbest-online-furniture-stores&psig=AOvVaw03GQwsm9mZ2RJJe1ZPJYG4&ust=1673798772492000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKCazL24x_wCFQAAAAAdAAAAABAQ",
               }}
               style={s`h-full w-full object-cover`}
             />
             {/* <Text>Hello Slick</Text> */}
           </View>
-          <View>
-            <Image
+          <View style={s`relative h-full w-full bg-red-500`}>
+            {/* <Image
               source={{
                 uri: "https://images.pexels.com/photos/269218/pexels-photo-269218.jpeg",
               }}
               style={s`h-full w-full object-cover`}
-            />
-            {/* <Text>Beautiful</Text> */}
+            /> */}
+            <View
+              style={s`h-40 w-20 rounded-full bg-white absolute right-20 top-10`}
+            ></View>
           </View>
           <View>
             <Image
