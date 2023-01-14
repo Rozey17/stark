@@ -13,8 +13,8 @@ export default {
 
   fields: [
     {
-      name: 'title',
-      title: 'Title',
+      name: 'name',
+      title: 'Name',
       type: 'string',
       validation: (Rule) => Rule.required().min(3).max(80),
     },
@@ -23,7 +23,7 @@ export default {
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'name',
       },
     },
     {

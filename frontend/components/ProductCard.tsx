@@ -3,7 +3,7 @@ import React from "react";
 import { s } from "react-native-wind";
 import { Entypo, Feather } from "@expo/vector-icons";
 
-const Card = ({
+const ProductCard = ({
   name,
   price,
   image,
@@ -54,4 +54,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default ProductCard;

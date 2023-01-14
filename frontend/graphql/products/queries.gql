@@ -1,0 +1,12 @@
+query ListCategories {
+  allCategory {
+    _id
+    slug {
+      current
+    }
+    name
+    
+
+   
+  }
+}

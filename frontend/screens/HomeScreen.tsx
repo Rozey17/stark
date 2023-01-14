@@ -7,16 +7,20 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import { s } from "react-native-wind";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Entypo, Feather } from "@expo/vector-icons";
-import Carousel, { ParallaxImage } from "react-native-snap-carousel";
-import Card from "../components/Card";
 import Slick from "react-native-slick";
 import ModalComponent from "../components/Modal";
 import CategoryCard from "../components/CategoryCard";
+import ProductCard from "../components/ProductCard";
+import { ListCategoriesDocument } from "../components/apollo-components";
+import { apolloClient } from "../lib/graphql";
+import { initializeApollo } from "../lib/graphql.server";
+import { client } from "../lib/sanity.server";
+import { urlForImage } from "../lib/sanity";
 
 const window = Dimensions.get("window");
 const PAGE_WIDTH = window.width;
@@ -52,7 +56,18 @@ export const ENTRIES1 = [
     illustration: "http://i.imgur.com/lceHsT6l.jpg",
   },
 ];
+
 const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    client.fetch(`*[_type == 'category']`).then((res) => {
+      setCategories(res);
+    });
+  }, []);
+
+  console.log(categories);
+
   const items = [
     {
       name: "new",
@@ -80,38 +95,39 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
     },
   ];
 
-  const categories = [
-    {
-      name: "Living",
+  // const categories = [
+  //   {
+  //     name: "Living",
 
-      image:
-        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-    },
-    {
-      name: "Dining",
+  //     image:
+  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+  //   },
+  //   {
+  //     name: "Dining",
 
-      image:
-        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-    },
-    {
-      name: "Lighting",
+  //     image:
+  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+  //   },
+  //   {
+  //     name: "Lighting",
 
-      image:
-        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-    },
-    {
-      name: "Tech",
+  //     image:
+  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+  //   },
+  //   {
+  //     name: "Tech",
 
-      image:
-        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-    },
-    {
-      name: "Furniture",
+  //     image:
+  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+  //   },
+  //   {
+  //     name: "Furniture",
 
-      image:
-        "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
-    },
-  ];
+  //     image:
+  //       "https://cdn.dribbble.com/users/464907/screenshots/6279944/illustration-led.jpg?compress=1&resize=400x300",
+  //   },
+  // ];
+
   return (
     <SafeAreaView style={s`bg-white h-full`}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -122,7 +138,17 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <Text>Stark</Text>
           <Entypo name="shopping-cart" size={24} color="black" />
         </View>
-        <Slick style={s`h-72`} showsButtons={true}>
+        <Slick
+          style={s`h-72`}
+          // showsButtons={true}
+          autoplay
+          autoplayTimeout={60}
+          nextButton={false}
+          prevButton={false}
+          // showsHorizontalScrollIndicator
+          activeDotColor="gray"
+          // StickyHeaderComponent={}
+        >
           <View>
             <Image
               source={{
@@ -158,9 +184,9 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {categories.map((item) => (
                 <CategoryCard
-                  key={item.name}
+                  key={item._id}
                   name={item.name}
-                  image={item.image}
+                  image={urlForImage(item.image).url()}
                 />
               ))}
             </ScrollView>
@@ -171,7 +197,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {items.map((item) => (
-                <Card
+                <ProductCard
                   key={item.name}
                   name={item.name}
                   price={item.price}
