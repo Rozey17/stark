@@ -33,6 +33,7 @@ const ProductScreen = () => {
           <Text style={s`font-semibold capitalize text-lg mb-3`}>
             € {price}
           </Text>
+          <Text style={s`  font-bold text-xl mb-2`}>Description</Text>
           <Text style={s`  `}>{description}</Text>
           <View style={s` flex-row items-center mt-5`}>
             <Text style={s` uppercase mr-3`}>Quantity</Text>
@@ -47,7 +48,7 @@ const ProductScreen = () => {
               ) : (
                 <TouchableOpacity
                   onPress={handleRemoveQuantity}
-                  style={s` border border-gray-100 h-10 w-10 justify-center items-center`}
+                  style={s` border border-gray-200 h-10 w-10 justify-center items-center`}
                 >
                   <Text>-</Text>
                 </TouchableOpacity>
