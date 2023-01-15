@@ -74,6 +74,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
     <SafeAreaView style={s` h-full`}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* header */}
+
         <View style={s`flex flex-row justify-between items-center p-3`}>
           {/* <Entypo name="menu" size={24} color="black" /> */}
           <ModalComponent />
@@ -87,6 +88,9 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
             <Entypo name="shopping-cart" size={24} color="black" />
           </View>
         </View>
+
+        {/* carousel */}
+
         <Slick
           style={s`h-72`}
           // showsButtons={true}
@@ -105,18 +109,14 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
               }}
               style={s`h-full w-full object-cover`}
             />
-            {/* <Text>Hello Slick</Text> */}
           </View>
-          <View style={s`relative h-full w-full bg-red-500`}>
-            {/* <Image
+          <View style={s`h-full w-full bg-red-500`}>
+            <Image
               source={{
                 uri: "https://images.pexels.com/photos/269218/pexels-photo-269218.jpeg",
               }}
               style={s`h-full w-full object-cover`}
-            /> */}
-            <View
-              style={s`h-40 w-20 rounded-full bg-white absolute right-20 top-10`}
-            ></View>
+            />
           </View>
           <View>
             <Image
@@ -129,9 +129,18 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           </View>
         </Slick>
 
-        <View style={s`p-3 pr-0`}>
-          <Text style={s`capitalize font-bold text-2xl mb-3`}>Categories</Text>
-          <View>
+        {/* categories */}
+
+        <View style={s` pr-0`}>
+          <View style={s`p-3 flex-row justify-between items-center`}>
+            <Text style={s`capitalize font-bold text-2xl mb-3`}>
+              Categories
+            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Shop")}>
+              <Text style={s`uppercase`}>Show all</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={s`pl-3`}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {categories.map((item) => (
                 <CategoryCard
@@ -143,7 +152,10 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
             </ScrollView>
           </View>
         </View>
-        <View style={s`p-3 pr-0`}>
+
+        {/* best sellers */}
+
+        <View style={s`p-3 pr-0 mt-5`}>
           <Text style={s`capitalize font-bold text-2xl mb-3`}>Best seller</Text>
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
