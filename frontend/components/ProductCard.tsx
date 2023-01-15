@@ -49,6 +49,7 @@ const ProductCard = ({
       onPress={() =>
         //@ts-ignore
         navigation.navigate("Product", {
+          id,
           name,
           price,
           image,

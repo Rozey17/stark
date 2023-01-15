@@ -4,8 +4,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { s } from "react-native-wind";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../features/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeFromCart,
+  selectCartItemsWithId,
+} from "../features/cartSlice";
 import Header from "../components/Header";
 
 const ProductScreen = () => {
@@ -21,7 +25,7 @@ const ProductScreen = () => {
     //@ts-ignore
     params: { id, name, description, price, image },
   } = useRoute();
-  const navigation = useNavigation();
+  //   const navigation = useNavigation();
 
   //   useLayoutEffect(() => {
   //     navigation.setOptions({
@@ -34,7 +38,13 @@ const ProductScreen = () => {
   const addItemToCart = () => {
     dispatch(addToCart({ id, name, description, image }));
   };
+  //   const removeItemFromCart = () => {
+  //     if (items.length <= 0) return;
+  //     dispatch(removeFromCart({ id }));
+  //   };
 
+  const items = useSelector((state) => selectCartItemsWithId(state, id));
+  //   console.log(items);
   return (
     <SafeAreaView
       style={s`bg-white relative h-full`}
@@ -56,39 +66,6 @@ const ProductScreen = () => {
           </Text>
           <Text style={s`font-bold text-xl mb-2`}>Description</Text>
           <Text style={s``}>{description}</Text>
-
-          <View style={s` flex-row items-center mt-5 mb-20`}>
-            <Text style={s` mr-10 text-lg`}>Quantity</Text>
-            <View style={s` flex-row `}>
-              {quantity >= 2 ? (
-                <TouchableOpacity
-                  onPress={handleRemoveQuantity}
-                  style={s` border h-10 w-10 border-r-0 justify-center items-center`}
-                >
-                  <Text style={s` text-lg`}>-</Text>
-                </TouchableOpacity>
-              ) : (
-                <TouchableOpacity
-                  onPress={handleRemoveQuantity}
-                  style={s` border border-gray-200 h-10 w-10 justify-center items-center`}
-                >
-                  <Text style={s` text-lg`}>-</Text>
-                </TouchableOpacity>
-              )}
-              <View
-                style={s` border border h-10 w-32 justify-center items-center`}
-              >
-                <Text>{quantity}</Text>
-              </View>
-
-              <TouchableOpacity
-                onPress={handleAddQuantity}
-                style={s` border border-l-0 h-10 w-10 justify-center items-center`}
-              >
-                <Text style={s` text-lg`}>+</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
         </View>
       </ScrollView>
       <View

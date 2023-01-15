@@ -19,6 +19,7 @@ import SearchScreen from "../screens/SearchScreen";
 import ProductScreen from "../screens/ProductScreen";
 import AccountScreen from "../screens/AccountScreen";
 import { AntDesign } from "@expo/vector-icons";
+import CartScreen from "../screens/CartScreen";
 const Navigation = () => {
   return (
     <NavigationContainer>
@@ -39,11 +40,18 @@ function RootNavigator() {
         // hide header
         options={{ headerShown: false }}
       />
-      <HomeStack.Screen
+      <Stack.Screen
         name="Product"
         //@ts-ignore
 
         component={ProductScreen}
+        // options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Cart"
+        //@ts-ignore
+
+        component={CartScreen}
         // options={{ headerShown: false }}
       />
     </Stack.Navigator>
