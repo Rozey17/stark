@@ -2,10 +2,6 @@ import { View, Text, Pressable, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { s } from "react-native-wind";
 import { Entypo, Feather, FontAwesome } from "@expo/vector-icons";
-import {
-  NativeStackHeaderProps,
-  NativeStackNavigationProp,
-} from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectCartItems } from "../features/cartSlice";

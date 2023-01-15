@@ -52,7 +52,7 @@ function RootNavigator() {
         //@ts-ignore
 
         component={CartScreen}
-        // options={{ headerShown: false }}
+        options={{ presentation: "containedModal" }}
       />
     </Stack.Navigator>
   );

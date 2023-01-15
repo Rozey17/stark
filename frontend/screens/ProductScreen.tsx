@@ -13,14 +13,6 @@ import {
 import Header from "../components/Header";
 
 const ProductScreen = () => {
-  const [quantity, setQuantity] = useState(1);
-  function handleAddQuantity() {
-    setQuantity(quantity + 1);
-  }
-
-  function handleRemoveQuantity() {
-    quantity >= 2 && setQuantity(quantity - 1);
-  }
   const {
     //@ts-ignore
     params: { id, name, description, price, image },
@@ -36,7 +28,7 @@ const ProductScreen = () => {
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
-    dispatch(addToCart({ id, name, description, image }));
+    dispatch(addToCart({ id, name, description, image, price }));
   };
   //   const removeItemFromCart = () => {
   //     if (items.length <= 0) return;
@@ -59,12 +51,12 @@ const ProductScreen = () => {
 
         <Image source={{ uri: image }} style={s`h-96 w-full`} />
 
-        <View style={s`mt-5 p-2`}>
+        <View style={s`mt-5 p-2 mb-20`}>
           <Text style={s`font-semibold capitalize text-2xl mb-3`}>{name}</Text>
           <Text style={s`font-semibold capitalize text-lg mb-3`}>
             € {price}
           </Text>
-          <Text style={s`font-bold text-xl mb-2`}>Description</Text>
+          <Text style={s`font-bold text-xl `}>Description</Text>
           <Text style={s``}>{description}</Text>
         </View>
       </ScrollView>

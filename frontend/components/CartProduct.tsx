@@ -22,7 +22,7 @@ const CartProduct = ({
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
-    dispatch(addToCart({ id, name, image }));
+    dispatch(addToCart({ id, name, image, price }));
   };
   const removeItemFromCart = () => {
     if (items.length <= 0) return;
@@ -30,6 +30,9 @@ const CartProduct = ({
   };
 
   const items = useSelector((state) => selectCartItemsWithId(state, id));
+
+  const totalPrice = price * items.length;
+
   // console.log(items);
 
   return (
@@ -53,7 +56,7 @@ const CartProduct = ({
               <Text style={s` text-lg`}>-</Text>
             </TouchableOpacity>
           )}
-          <View style={s` border border h-10 w-32 justify-center items-center`}>
+          <View style={s` border border h-10 w-20 justify-center items-center`}>
             <Text>{items.length}</Text>
           </View>
 
@@ -66,7 +69,7 @@ const CartProduct = ({
         </View>
       </View>
       <View style={s`flex-row  justify-end flex-1`}>
-        <Text style={s`font-medium`}>€ {price}</Text>
+        <Text style={s`font-medium`}>€ {totalPrice}</Text>
       </View>
     </View>
   );

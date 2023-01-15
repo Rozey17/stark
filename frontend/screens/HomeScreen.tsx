@@ -84,16 +84,16 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
         <Header />
 
         {/* carousel */}
+
         <Carousel />
+
         {/* categories */}
 
         <View style={s` pr-0`}>
           <View style={s`p-3 flex-row justify-between items-center`}>
-            <Text style={s`capitalize font-bold text-2xl mb-3`}>
-              Categories
-            </Text>
+            <Text style={s`capitalize font-bold text-xl mb-3`}>Categories</Text>
             <TouchableOpacity onPress={() => navigation.navigate("Shop")}>
-              <Text style={s`uppercase`}>Show all</Text>
+              <Text style={s`text-gray-500 capitalize`}>Show all</Text>
             </TouchableOpacity>
           </View>
           <View style={s`pl-3`}>
@@ -112,7 +112,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
         {/* best sellers */}
 
         <View style={s`p-3 pr-0 mt-5`}>
-          <Text style={s`capitalize font-bold text-2xl mb-3`}>Best seller</Text>
+          <Text style={s`capitalize font-bold text-xl mb-3`}>Best seller</Text>
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {products.map((product) => (

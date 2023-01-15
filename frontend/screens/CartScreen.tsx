@@ -14,21 +14,20 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const CartScreen = () => {
   const items = useSelector(selectCartItems);
   //   const items = useSelector((state) => selectCartItemsWithId(state, id));
+  console.log(items);
   return (
     // <SafeAreaView>
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={s``}>
-        {items
-          // .filter((product) => product._id === id)
-          .map((product) => (
-            <CartProduct
-              key={product.name}
-              id={product._id}
-              name={product.name}
-              image={product.image}
-              price={product.price}
-            />
-          ))}
+        {items.map((product) => (
+          <CartProduct
+            key={product.name}
+            id={product._id}
+            name={product.name}
+            image={product.image}
+            price={product.price}
+          />
+        ))}
       </View>
     </ScrollView>
     // </SafeAreaView>
