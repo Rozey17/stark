@@ -18,7 +18,7 @@ import WishListScreen from "../screens/WishListScreen";
 import SearchScreen from "../screens/SearchScreen";
 import ProductScreen from "../screens/ProductScreen";
 import AccountScreen from "../screens/AccountScreen";
-
+import { AntDesign } from "@expo/vector-icons";
 const Navigation = () => {
   return (
     <NavigationContainer>
@@ -164,7 +164,7 @@ function BottomTabNavigator() {
         component={WishListScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Entypo name="heart" size={20} color={color} />
+            <AntDesign name="heart" size={20} color={color} />
           ),
           // tabBarShowLabel: false,
         }}

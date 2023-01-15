@@ -103,7 +103,7 @@ const ProductCard = ({
       </View>
       <View>
         <Text style={s`capitalize`}>{name}</Text>
-        <Text>${price}</Text>
+        <Text>$ {price}</Text>
       </View>
       <View style={s`flex flex-row`}>
         <Entypo name="star" size={14} color="#DAA520" />

@@ -11,14 +11,16 @@ const WishListScreen = () => {
 
   return (
     <View style={s``}>
-      {favoritesItems.map((product) => (
-        <FavoriteProductCard
-          key={product.name}
-          name={product.name}
-          image={product.image}
-          price={product.price}
-        />
-      ))}
+      {favoritesItems
+        // .filter((product) => product._id !== product._id)
+        .map((product) => (
+          <FavoriteProductCard
+            key={product.name}
+            name={product.name}
+            image={product.image}
+            price={product.price}
+          />
+        ))}
     </View>
   );
 };

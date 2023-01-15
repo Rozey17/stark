@@ -48,6 +48,7 @@ export default {
       name: 'price',
       title: 'price',
       type: 'number',
+      validation: (Rule) => Rule.required(),
     },
 
     {

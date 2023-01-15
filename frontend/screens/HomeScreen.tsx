@@ -22,6 +22,8 @@ import { urlForImage } from "../lib/sanity";
 import { addToCart, selectCartItems } from "../features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFavoritesItems } from "../features/favoritesSlice";
+import Header from "../components/Header";
+import Carousel from "../components/Carousel";
 
 const window = Dimensions.get("window");
 const PAGE_WIDTH = window.width;
@@ -73,66 +75,16 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
 
   const items = useSelector(selectCartItems);
   const favoritesItems = useSelector(selectFavoritesItems);
-  console.log(favoritesItems);
+  // console.log(favoritesItems);
   return (
     <SafeAreaView style={s` h-full`}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* header */}
 
-        <View style={s`flex flex-row justify-between items-center p-3`}>
-          {/* <Entypo name="menu" size={24} color="black" /> */}
-          <ModalComponent />
-          <Text>Stark</Text>
-          <View style={s`relative flex flex-row`}>
-            <View
-              style={s`h-4 w-4 bg-red-500 rounded-full left-1 z-10 items-center justify-center`}
-            >
-              <Text style={s`text-white text-xs`}>{items.length}</Text>
-            </View>
-            <Entypo name="shopping-cart" size={24} color="black" />
-          </View>
-        </View>
+        <Header />
 
         {/* carousel */}
-
-        <Slick
-          style={s`h-80`}
-          // showsButtons={true}
-          autoplay
-          autoplayTimeout={60}
-          nextButton={false}
-          prevButton={false}
-          // showsHorizontalScrollIndicator
-          activeDotColor="gray"
-          // StickyHeaderComponent={}
-        >
-          <View>
-            <Image
-              source={{
-                uri: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.architecturaldigest.com%2Fstory%2Fbest-online-furniture-stores&psig=AOvVaw03GQwsm9mZ2RJJe1ZPJYG4&ust=1673798772492000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCKCazL24x_wCFQAAAAAdAAAAABAQ",
-              }}
-              style={s`h-full w-full object-cover`}
-            />
-          </View>
-          <View style={s`h-full w-full bg-red-500`}>
-            <Image
-              source={{
-                uri: "https://images.pexels.com/photos/269218/pexels-photo-269218.jpeg",
-              }}
-              style={s`h-full w-full object-cover`}
-            />
-          </View>
-          <View>
-            <Image
-              source={{
-                uri: "https://images.pexels.com/photos/3316918/pexels-photo-3316918.jpeg",
-              }}
-              style={s`h-full w-full object-cover`}
-            />
-            {/* <Text>And simple</Text> */}
-          </View>
-        </Slick>
-
+        <Carousel />
         {/* categories */}
 
         <View style={s` pr-0`}>

@@ -1,11 +1,12 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { s } from "react-native-wind";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Entypo } from "@expo/vector-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart, selectCartItems } from "../features/cartSlice";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../features/cartSlice";
+import Header from "../components/Header";
 
 const ProductScreen = () => {
   const [quantity, setQuantity] = useState(1);
@@ -18,25 +19,32 @@ const ProductScreen = () => {
   }
   const {
     //@ts-ignore
-    params: { _id, name, description, price, image },
+    params: { id, name, description, price, image },
   } = useRoute();
+  const navigation = useNavigation();
+
+  //   useLayoutEffect(() => {
+  //     navigation.setOptions({
+  //       headerShown: false,
+  //     });
+  //   }, []);
 
   const dispatch = useDispatch();
 
-  const items = useSelector(selectCartItems);
-
   const addItemToCart = () => {
-    dispatch(addToCart({ _id, name, description, image }));
+    dispatch(addToCart({ id, name, description, image }));
   };
-
-  console.log(items);
 
   return (
     <SafeAreaView
-      style={s`bg-white relative`}
-      edges={["bottom", "left", "right", "top"]}
+      style={s`bg-white relative h-full`}
+      edges={["left", "right", "bottom"]}
     >
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        // StickyHeaderComponent={Header}
+        // stickyHeaderIndices={[0]}
+      >
         {/* product image */}
 
         <Image source={{ uri: image }} style={s`h-96 w-full`} />
