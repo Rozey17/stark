@@ -80,9 +80,9 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <Text>Stark</Text>
           <View style={s`relative flex flex-row`}>
             <View
-              style={s`h-5 w-5 bg-red-500 rounded-full left-1 z-10 items-center justify-center`}
+              style={s`h-4 w-4 bg-red-500 rounded-full left-1 z-10 items-center justify-center`}
             >
-              <Text style={s`text-white font-semibold text-xs`}>0</Text>
+              <Text style={s`text-white text-xs`}>0</Text>
             </View>
             <Entypo name="shopping-cart" size={24} color="black" />
           </View>
@@ -147,12 +147,13 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <Text style={s`capitalize font-bold text-2xl mb-3`}>Best seller</Text>
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {products.map((item) => (
+              {products.map((product) => (
                 <ProductCard
-                  key={item._id}
-                  name={item.name}
-                  price={item.price}
-                  image={urlForImage(item.image).url()}
+                  key={product._id}
+                  name={product.name}
+                  price={product.price}
+                  image={urlForImage(product.image).url()}
+                  description={product.description}
                 />
               ))}
             </ScrollView>

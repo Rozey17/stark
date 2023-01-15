@@ -16,6 +16,7 @@ import TechScreen from "../screens/TechScreen";
 import LightingScreen from "../screens/LightingScreen";
 import WishListScreen from "../screens/WishListScreen";
 import SearchScreen from "../screens/SearchScreen";
+import ProductScreen from "../screens/ProductScreen";
 
 const Navigation = () => {
   return (
@@ -53,13 +54,13 @@ function HomeStackScreen() {
         component={HomeScreen}
         options={{ headerShown: false }}
       />
-      {/* <HomeStack.Screen
+      <HomeStack.Screen
         name="Product"
         //@ts-ignore
 
         component={ProductScreen}
         // options={{ headerShown: false }}
-      /> */}
+      />
     </HomeStack.Navigator>
   );
 }

@@ -2,19 +2,38 @@ import { View, Text, Pressable, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { s } from "react-native-wind";
 import { Entypo, Feather, FontAwesome } from "@expo/vector-icons";
+import {
+  NativeStackHeaderProps,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 
 const ProductCard = ({
   name,
   price,
   image,
+  description,
 }: {
   name: string;
   price: number;
   image: string;
+  description: string;
 }) => {
   const [selected, setSelected] = useState(false);
+  const navigation = useNavigation();
   return (
-    <Pressable style={s``}>
+    <Pressable
+      style={s``}
+      onPress={() =>
+        //@ts-ignore
+        navigation.navigate("Product", {
+          name,
+          price,
+          image,
+          description,
+        })
+      }
+    >
       <View style={s`relative h-64 w-52 mr-3 rounded-lg overflow-hidden mb-1`}>
         <Image
           source={{
