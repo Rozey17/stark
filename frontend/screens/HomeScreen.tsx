@@ -16,11 +16,12 @@ import Slick from "react-native-slick";
 import ModalComponent from "../components/Modal";
 import CategoryCard from "../components/CategoryCard";
 import ProductCard from "../components/ProductCard";
-import { ListCategoriesDocument } from "../components/apollo-components";
-import { apolloClient } from "../lib/graphql";
-import { initializeApollo } from "../lib/graphql.server";
+
 import { client } from "../lib/sanity.server";
 import { urlForImage } from "../lib/sanity";
+import { addToCart, selectCartItems } from "../features/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavoritesItems } from "../features/favoritesSlice";
 
 const window = Dimensions.get("window");
 const PAGE_WIDTH = window.width;
@@ -70,6 +71,9 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
     });
   }, []);
 
+  const items = useSelector(selectCartItems);
+  const favoritesItems = useSelector(selectFavoritesItems);
+  console.log(favoritesItems);
   return (
     <SafeAreaView style={s` h-full`}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -83,7 +87,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
             <View
               style={s`h-4 w-4 bg-red-500 rounded-full left-1 z-10 items-center justify-center`}
             >
-              <Text style={s`text-white text-xs`}>0</Text>
+              <Text style={s`text-white text-xs`}>{items.length}</Text>
             </View>
             <Entypo name="shopping-cart" size={24} color="black" />
           </View>
@@ -92,7 +96,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
         {/* carousel */}
 
         <Slick
-          style={s`h-72`}
+          style={s`h-80`}
           // showsButtons={true}
           autoplay
           autoplayTimeout={60}
@@ -162,6 +166,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
               {products.map((product) => (
                 <ProductCard
                   key={product._id}
+                  id={product._id}
                   name={product.name}
                   price={product.price}
                   image={urlForImage(product.image).url()}
@@ -170,18 +175,6 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
               ))}
             </ScrollView>
           </View>
-          {/* <View>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {items.map((item) => (
-                <Card
-                  key={item.name}
-                  name={item.name}
-                  price={item.price}
-                  image={item.image}
-                />
-              ))}
-            </ScrollView>
-          </View> */}
         </View>
       </ScrollView>
     </SafeAreaView>

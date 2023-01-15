@@ -7,13 +7,21 @@ import {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, selectCartItems } from "../features/cartSlice";
+import {
+  addToFavorites,
+  selectFavoritesItems,
+} from "../features/favoritesSlice";
 
 const ProductCard = ({
+  id,
   name,
   price,
   image,
   description,
 }: {
+  id: string;
   name: string;
   price: number;
   image: string;
@@ -21,9 +29,23 @@ const ProductCard = ({
 }) => {
   const [selected, setSelected] = useState(false);
   const navigation = useNavigation();
+
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector(selectCartItems);
+  const favoritesItems = useSelector(selectFavoritesItems);
+
+  const addItemToCart = () => {
+    dispatch(addToCart({ id, name, description, image, price }));
+  };
+
+  const addItemToFavorites = () => {
+    dispatch(addToFavorites({ id, name, description, image, price }));
+  };
+
   return (
     <Pressable
-      style={s``}
+      style={s`h-72 w-48`}
       onPress={() =>
         //@ts-ignore
         navigation.navigate("Product", {
@@ -34,15 +56,23 @@ const ProductCard = ({
         })
       }
     >
-      <View style={s`relative h-64 w-52 mr-3 rounded-lg overflow-hidden mb-1`}>
+      <View style={s`relative h-3/4 mr-4 rounded-lg overflow-hidden mb-1`}>
+        {/* product image */}
+
         <Image
           source={{
             uri: image,
           }}
           style={s`bg-contain h-full w-full `}
         />
+
+        {/* add to favorites button */}
+
         <TouchableOpacity
-          onPress={() => setSelected(!selected)}
+          onPress={() => {
+            setSelected(!selected);
+            addItemToFavorites();
+          }}
           style={s`absolute top-2 right-2`}
         >
           {selected ? (
@@ -52,7 +82,12 @@ const ProductCard = ({
           )}
         </TouchableOpacity>
 
-        <TouchableOpacity style={s`absolute bottom-2 right-2`}>
+        {/* add to cart button */}
+
+        <TouchableOpacity
+          onPress={addItemToCart}
+          style={s`absolute bottom-2 right-2`}
+        >
           <Entypo name="squared-plus" size={24} color="black" />
         </TouchableOpacity>
         <View

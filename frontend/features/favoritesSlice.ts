@@ -9,26 +9,26 @@ const initialState = {
   items: [],
 };
 
-export const cartSlice = createSlice({
-  name: "cart",
+export const favoritesSlice = createSlice({
+  name: "favorites",
   initialState,
   reducers: {
-    addToCart: (state, action) => {
+    addToFavorites: (state, action) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.items = [...state.items, action.payload];
     },
-    removeFromCart: (state, action) => {
+    removeFromFavorites: (state, action) => {
       //   state.items -= 1;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToFavorites, removeFromFavorites } = favoritesSlice.actions;
 
-export const selectCartItems = (state) => state.cart.items;
+export const selectFavoritesItems = (state) => state.favorites.items;
 
-export default cartSlice.reducer;
+export default favoritesSlice.reducer;
