@@ -17,6 +17,7 @@ import LightingScreen from "../screens/LightingScreen";
 import WishListScreen from "../screens/WishListScreen";
 import SearchScreen from "../screens/SearchScreen";
 import ProductScreen from "../screens/ProductScreen";
+import AccountScreen from "../screens/AccountScreen";
 
 const Navigation = () => {
   return (
@@ -38,22 +39,6 @@ function RootNavigator() {
         // hide header
         options={{ headerShown: false }}
       />
-    </Stack.Navigator>
-  );
-}
-
-const HomeStack = createNativeStackNavigator();
-const ShopStack = createNativeStackNavigator();
-
-function HomeStackScreen() {
-  return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen
-        name="HomeStack"
-        //@ts-ignore
-        component={HomeScreen}
-        options={{ headerShown: false }}
-      />
       <HomeStack.Screen
         name="Product"
         //@ts-ignore
@@ -61,9 +46,25 @@ function HomeStackScreen() {
         component={ProductScreen}
         // options={{ headerShown: false }}
       />
-    </HomeStack.Navigator>
+    </Stack.Navigator>
   );
 }
+
+const HomeStack = createNativeStackNavigator();
+const ShopStack = createNativeStackNavigator();
+
+// function HomeStackScreen() {
+//   return (
+//     <HomeStack.Navigator>
+//       <HomeStack.Screen
+//         name="HomeStack"
+//         //@ts-ignore
+//         component={HomeScreen}
+//         options={{ headerShown: false }}
+//       />
+//     </HomeStack.Navigator>
+//   );
+// }
 
 function ShopStackScreen() {
   return (
@@ -121,7 +122,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Home"
         //@ts-ignore
-        component={HomeStackScreen}
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="home" size={20} color={color} />
@@ -172,7 +173,7 @@ function BottomTabNavigator() {
         name="Account"
         //@ts-ignore
 
-        component={HomeScreen}
+        component={AccountScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="user-alt" size={20} color={color} />
@@ -183,5 +184,21 @@ function BottomTabNavigator() {
     </BottomTab.Navigator>
   );
 }
+
+// const ProductScreenBottomTab = createBottomTabNavigator();
+// function ProductScreenBottomTabNavigator() {
+//   return (
+//     <ProductScreenBottomTab.Navigator>
+//       <ProductScreenBottomTab.Screen
+//         name="Product"
+//         //@ts-ignore
+
+//         component={ProductScreen}
+//         // options={{ headerShown: false }}
+//       />
+     
+//     </ProductScreenBottomTab.Navigator>
+//   );
+// }
 
 export default Navigation;
