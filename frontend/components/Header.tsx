@@ -3,7 +3,7 @@ import React from "react";
 import { s } from "react-native-wind";
 import { Entypo } from "@expo/vector-icons";
 import ModalComponent from "./Modal";
-import Cart from "./Cart";
+import Cart from "./CartIcon";
 
 const Header = () => {
   return (

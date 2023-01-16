@@ -1,37 +1,44 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { s } from "react-native-wind";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addToCart,
-  removeFromCart,
-  selectCartItemsWithId,
-} from "../features/cartSlice";
+// import {
+//   addToCart,
+//   removeFromCart,
+//   selectCartItemsWithId,
+// } from "../features/cartSlice";
+import { Store } from "../utils/store";
 
 const CartProduct = ({
   id,
   name,
   image,
   price,
+  quantity,
+  addToCart,
+  removeFromCart,
 }: {
   id: string;
   name: string;
   image: string;
   price: number;
+  quantity: number;
+  addToCart: () => void;
+  removeFromCart: () => void;
 }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const addItemToCart = () => {
-    dispatch(addToCart({ id, name, image, price }));
-  };
-  const removeItemFromCart = () => {
-    if (items.length <= 0) return;
-    dispatch(removeFromCart({ id }));
-  };
+  // const addItemToCart = () => {
+  //   dispatch(addToCart({ id, name, image, price }));
+  // };
+  // const removeItemFromCart = () => {
+  //   if (items.length <= 0) return;
+  //   dispatch(removeFromCart({ id }));
+  // };
 
-  const items = useSelector((state) => selectCartItemsWithId(state, id));
+  // const items = useSelector((state) => selectCartItemsWithId(state, id));
 
-  const totalPrice = price * items.length;
+  // const totalPrice = price * items.length;
 
   // console.log(items);
 
@@ -41,27 +48,27 @@ const CartProduct = ({
       <View style={s`px-3 `}>
         <Text style={s`w-48  mb-6 font-medium capitalize`}>{name}</Text>
         <View style={s` flex-row `}>
-          {items.length >= 1 ? (
+          {/* {cartItems.length >= 1 ? (
             <TouchableOpacity
-              onPress={removeItemFromCart}
+              onPress={removeFromCart}
               style={s` border h-10 w-10 border-r-0 justify-center items-center`}
             >
               <Text style={s` text-lg`}>-</Text>
             </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              onPress={removeItemFromCart}
-              style={s` border border-gray-200 h-10 w-10 justify-center items-center`}
-            >
-              <Text style={s` text-lg`}>-</Text>
-            </TouchableOpacity>
-          )}
+          ) : ( */}
+          <TouchableOpacity
+            onPress={removeFromCart}
+            style={s` border border-gray-200 h-10 w-10 justify-center items-center`}
+          >
+            <Text style={s` text-lg`}>-</Text>
+          </TouchableOpacity>
+          {/* )} */}
           <View style={s` border border h-10 w-20 justify-center items-center`}>
-            <Text>{items.length}</Text>
+            <Text>{quantity}</Text>
           </View>
 
           <TouchableOpacity
-            onPress={addItemToCart}
+            onPress={addToCart}
             style={s` border border-l-0 h-10 w-10 justify-center items-center`}
           >
             <Text style={s` text-lg`}>+</Text>
@@ -69,7 +76,7 @@ const CartProduct = ({
         </View>
       </View>
       <View style={s`flex-row  justify-end flex-1`}>
-        <Text style={s`font-medium`}>€ {totalPrice}</Text>
+        {/* <Text style={s`font-medium`}>€ {totalPrice}</Text> */}
       </View>
     </View>
   );

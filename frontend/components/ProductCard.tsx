@@ -1,5 +1,5 @@
 import { View, Text, Pressable, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { s } from "react-native-wind";
 import { Entypo, Feather, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -9,6 +9,7 @@ import {
   addToFavorites,
   selectFavoritesItems,
 } from "../features/favoritesSlice";
+import { Store } from "../utils/store";
 
 const ProductCard = ({
   id,
@@ -26,17 +27,23 @@ const ProductCard = ({
   const [selected, setSelected] = useState(false);
   const navigation = useNavigation();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const cartItems = useSelector(selectCartItems);
-  const favoritesItems = useSelector(selectFavoritesItems);
+  // const cartItems = useSelector(selectCartItems);
+  // const favoritesItems = useSelector(selectFavoritesItems);
 
-  const addItemToCart = () => {
-    dispatch(addToCart({ id, name, description, image, price }));
-  };
+  // const addItemToCart = () => {
+  //   dispatch(addToCart({ id, name, description, image, price }));
+  // };
 
-  const addItemToFavorites = () => {
-    dispatch(addToFavorites({ id, name, description, image, price }));
+  // const addItemToFavorites = () => {
+  //   dispatch(addToFavorites({ id, name, description, image, price }));
+  // };
+
+  //@ts-ignore
+  const { dispatch } = useContext(Store);
+  const updateCartHandler = async (item: any, quantity: any) => {
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
   };
 
   return (
@@ -68,7 +75,7 @@ const ProductCard = ({
         <TouchableOpacity
           onPress={() => {
             setSelected(!selected);
-            addItemToFavorites();
+            // addItemToFavorites();
           }}
           style={s`absolute top-2 right-2`}
         >
@@ -82,7 +89,7 @@ const ProductCard = ({
         {/* add to cart button */}
 
         <TouchableOpacity
-          onPress={addItemToCart}
+          // onPress={addItemToCart}
           style={s`absolute bottom-2 right-2`}
         >
           <Entypo name="squared-plus" size={24} color="black" />

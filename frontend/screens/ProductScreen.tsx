@@ -1,5 +1,5 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useContext, useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { s } from "react-native-wind";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -11,6 +11,7 @@ import {
   selectCartItemsWithId,
 } from "../features/cartSlice";
 import Header from "../components/Header";
+import { Store } from "../utils/store";
 
 const ProductScreen = () => {
   const {
@@ -25,18 +26,25 @@ const ProductScreen = () => {
   //     });
   //   }, []);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const addItemToCart = () => {
-    dispatch(addToCart({ id, name, description, image, price }));
-  };
+  // const addItemToCart = () => {
+  //   dispatch(addToCart({ id, name, description, image, price }));
+  // };
   //   const removeItemFromCart = () => {
   //     if (items.length <= 0) return;
   //     dispatch(removeFromCart({ id }));
   //   };
 
-  const items = useSelector((state) => selectCartItemsWithId(state, id));
+  // const items = useSelector((state) => selectCartItemsWithId(state, id));
   //   console.log(items);
+
+  //@ts-ignore
+  const { dispatch } = useContext(Store);
+  const updateCartHandler = async (item: any, quantity: any) => {
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
+  };
+
   return (
     <SafeAreaView
       style={s`bg-white relative h-full`}
@@ -64,7 +72,9 @@ const ProductScreen = () => {
         style={s`absolute z-10 bottom-0 p-3 flex-row justify-center items-center border-t border-gray-200 bg-white`}
       >
         <TouchableOpacity
-          onPress={addItemToCart}
+          onPress={() =>
+            updateCartHandler({ id, name, description, price, image }, 1)
+          }
           style={s` w-full rounded-md p-2 bg-gray-800 flex-row justify-center items-center`}
         >
           <Entypo name="shopping-cart" size={15} color="white" />

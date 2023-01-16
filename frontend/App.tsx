@@ -7,6 +7,7 @@ import { ApolloProvider } from "@apollo/client";
 import { initializeApollo, useApollo } from "./lib/graphql.server";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { StoreProvider } from "./utils/store";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -15,10 +16,13 @@ export default function App() {
     return null;
   } else {
     return (
-      <Provider store={store}>
+      // <Provider store={store}>
+      <StoreProvider>
         <Navigation />
         <StatusBar style="auto" />
-      </Provider>
+      </StoreProvider>
+
+      // </Provider>
     );
   }
 }

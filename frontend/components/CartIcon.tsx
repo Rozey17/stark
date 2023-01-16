@@ -6,7 +6,7 @@ import { selectCartItems } from "../features/cartSlice";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
-const Cart = () => {
+const CartIcon = () => {
   const items = useSelector(selectCartItems);
   const navigation = useNavigation();
   return (
@@ -24,4 +24,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartIcon;

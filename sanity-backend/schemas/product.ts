@@ -52,6 +52,13 @@ export default {
     },
 
     {
+      name: 'quantity',
+      title: 'quantity',
+      type: 'number',
+      // validation: (Rule) => Rule.required(),
+      initialValue: 1,
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',
