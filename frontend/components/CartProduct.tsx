@@ -8,6 +8,7 @@ import {
   selectCartItemsWithId,
 } from "../features/cartSlice";
 import { useRoute } from "@react-navigation/native";
+import { AntDesign, Feather } from "@expo/vector-icons";
 
 const CartProduct = ({
   id,
@@ -38,41 +39,44 @@ const CartProduct = ({
     dispatch(removeFromCart({ id }));
   };
 
+  const totalPrice = price * quantity;
+
   return (
-    <View style={s`flex-row  h-28 border-b border-gray-300 p-2`}>
+    <View style={s`flex-row h-28 border-b border-gray-300 p-2`}>
       <Image source={{ uri: image }} style={s`w-24 h-full`} />
       <View style={s`px-3 `}>
         <Text style={s`w-48  mb-6 font-medium capitalize`}>{name}</Text>
-        <View style={s` flex-row `}>
-          {quantity >= 1 ? (
+        <View style={s` flex-row items-center`}>
+          {/* <Text style={s` mr-5 `}>Quantity</Text> */}
+          {quantity === 1 ? (
             <TouchableOpacity
               onPress={removeItemFromCart}
-              style={s` border h-10 w-10 border-r-0 justify-center items-center`}
+              style={s` border bg-gray-100 h-10 w-10 border-r-0 justify-center items-center`}
             >
-              <Text style={s` text-lg`}>-</Text>
+              <Feather name="trash-2" size={20} color="black" />
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               onPress={removeItemFromCart}
-              style={s` border border-gray-200 h-10 w-10 justify-center items-center`}
+              style={s` border bg-gray-100 border-r-0 h-10 w-10 justify-center items-center`}
             >
               <Text style={s` text-lg`}>-</Text>
             </TouchableOpacity>
           )}
-          <View style={s` border border h-10 w-20 justify-center items-center`}>
+          <View style={s` border  h-10 w-14 justify-center items-center`}>
             <Text>{quantity}</Text>
           </View>
 
           <TouchableOpacity
             onPress={addItemToCart}
-            style={s` border border-l-0 h-10 w-10 justify-center items-center`}
+            style={s` border bg-gray-100 border-l-0 h-10 w-10 justify-center items-center`}
           >
             <Text style={s` text-lg`}>+</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={s`flex-row  justify-end flex-1`}>
-        <Text style={s`font-medium`}>€ {price * quantity}</Text>
+        <Text style={s`font-medium`}>€ {totalPrice.toFixed(2)}</Text>
       </View>
     </View>
   );

@@ -20,7 +20,7 @@ const CartScreen = () => {
 
   return (
     // <ScrollView showsVerticalScrollIndicator={false}>
-    <View style={s``}>
+    <View style={s`bg-white`}>
       {Object.entries(groupedItemsInCart).map(([key, items]) => (
         <CartProduct
           key={key}
