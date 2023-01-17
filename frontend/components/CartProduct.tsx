@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { s } from "react-native-wind";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,6 +7,7 @@ import {
   removeFromCart,
   selectCartItemsWithId,
 } from "../features/cartSlice";
+import { useRoute } from "@react-navigation/native";
 
 const CartProduct = ({
   id,
@@ -21,6 +22,10 @@ const CartProduct = ({
   price: number;
   description: string;
 }) => {
+  // const {
+  //   //@ts-ignore
+  //   params: { id, name, description, price, image },
+  // } = useRoute();
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
@@ -30,6 +35,8 @@ const CartProduct = ({
     if (items.length <= 0) return;
     dispatch(removeFromCart({ id }));
   };
+
+  // const [id, setId] = useState('')
 
   const items = useSelector((state) => selectCartItemsWithId(state, id));
 
@@ -42,7 +49,7 @@ const CartProduct = ({
       <Image source={{ uri: image }} style={s`w-24 h-full`} />
       <View style={s`px-3 `}>
         <Text style={s`w-48  mb-6 font-medium capitalize`}>{name}</Text>
-        <View style={s` flex-row `}>
+        {/* <View style={s` flex-row `}>
           {items.length >= 1 ? (
             <TouchableOpacity
               onPress={removeItemFromCart}
@@ -68,7 +75,7 @@ const CartProduct = ({
           >
             <Text style={s` text-lg`}>+</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
       <View style={s`flex-row  justify-end flex-1`}>
         <Text style={s`font-medium`}>€ {totalPrice}</Text>
