@@ -72,7 +72,7 @@ const CartProduct = ({
         </View>
       </View>
       <View style={s`flex-row  justify-end flex-1`}>
-        <Text style={s`font-medium`}>€ {price}</Text>
+        <Text style={s`font-medium`}>€ {price * quantity}</Text>
       </View>
     </View>
   );
