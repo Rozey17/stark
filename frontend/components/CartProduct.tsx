@@ -13,16 +13,18 @@ const CartProduct = ({
   name,
   image,
   price,
+  description,
 }: {
   id: string;
   name: string;
   image: string;
   price: number;
+  description: string;
 }) => {
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
-    dispatch(addToCart({ id, name, image, price }));
+    dispatch(addToCart({ id, name, image, price, description }));
   };
   const removeItemFromCart = () => {
     if (items.length <= 0) return;
@@ -33,7 +35,7 @@ const CartProduct = ({
 
   const totalPrice = price * items.length;
 
-  // console.log(items);
+  console.log(items);
 
   return (
     <View style={s`flex-row  h-28 border-b border-gray-300 p-2`}>

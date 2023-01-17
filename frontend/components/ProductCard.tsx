@@ -28,8 +28,8 @@ const ProductCard = ({
 
   const dispatch = useDispatch();
 
-  const cartItems = useSelector(selectCartItems);
-  const favoritesItems = useSelector(selectFavoritesItems);
+  // const cartItems = useSelector(selectCartItems);
+  // const favoritesItems = useSelector(selectFavoritesItems);
 
   const addItemToCart = () => {
     dispatch(addToCart({ id, name, description, image, price }));

@@ -44,6 +44,7 @@ const ProductScreen = () => {
     >
       <ScrollView
         showsVerticalScrollIndicator={false}
+        // scrollEventThrottle={16}
         // StickyHeaderComponent={Header}
         // stickyHeaderIndices={[0]}
       >

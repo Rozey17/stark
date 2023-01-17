@@ -3,7 +3,7 @@ import React from "react";
 import { s } from "react-native-wind";
 import { Entypo } from "@expo/vector-icons";
 import ModalComponent from "./Modal";
-import Cart from "./Cart";
+import CartIcon from "./CartIcon";
 
 const Header = () => {
   return (
@@ -11,7 +11,7 @@ const Header = () => {
       {/* <Entypo name="menu" size={24} color="black" /> */}
       <ModalComponent />
       <Text>Stark</Text>
-      <Cart />
+      <CartIcon />
     </View>
   );
 };
