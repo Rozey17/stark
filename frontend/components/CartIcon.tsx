@@ -11,7 +11,7 @@ const CartIcon = () => {
   const navigation = useNavigation();
   return (
     //@ts-ignore
-    <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+    <TouchableOpacity onPress={() => navigation.push("Cart")}>
       <View style={s`relative flex flex-row`}>
         <View
           style={s`h-5 w-5 bg-red-500 rounded-full left-1 z-10 items-center justify-center`}

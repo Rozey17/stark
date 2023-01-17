@@ -92,7 +92,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
         <View style={s` pr-0`}>
           <View style={s`p-3 flex-row justify-between items-center`}>
             <Text style={s`capitalize font-bold text-xl mb-3`}>Categories</Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Shop")}>
+            <TouchableOpacity onPress={() => navigation.push("Shop")}>
               <Text style={s`text-gray-500 capitalize`}>Show all</Text>
             </TouchableOpacity>
           </View>

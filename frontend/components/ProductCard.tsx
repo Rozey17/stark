@@ -44,7 +44,7 @@ const ProductCard = ({
       style={s`h-72 w-48`}
       onPress={() =>
         //@ts-ignore
-        navigation.navigate("Product", {
+        navigation.push("Product", {
           id,
           name,
           price,
