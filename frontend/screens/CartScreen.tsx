@@ -20,7 +20,7 @@ const CartScreen = () => {
 
   return (
     // <ScrollView showsVerticalScrollIndicator={false}>
-    <View style={s`bg-white`}>
+    <View style={s`bg-white h-full`}>
       {items.length === 0 && (
         <Text style={s`p-5 text-center text-gray-700 font-medium text-center `}>
           Your cart is empty
