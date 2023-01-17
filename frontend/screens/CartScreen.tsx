@@ -1,16 +1,9 @@
-import { View, Text, ScrollView, Image } from "react-native";
-import React, { useEffect, useMemo, useState } from "react";
+import { View, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addToCart,
-  removeFromCart,
-  selectCartItems,
-  selectCartItemsWithId,
-} from "../features/cartSlice";
+import { selectCartItems } from "../features/cartSlice";
 import { s } from "react-native-wind";
 import CartProduct from "../components/CartProduct";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const CartScreen = () => {
   const items = useSelector(selectCartItems);
@@ -29,10 +22,14 @@ const CartScreen = () => {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={s``}>
         {Object.entries(groupedItemsInCart).map(([key, items]) => (
-          <View
+          <CartProduct
             key={key}
-            style={s`flex-row  h-28 border-b border-gray-300 p-2`}
-          ></View>
+            id={key}
+            image={items[0].image}
+            name={items[0].name}
+            price={items[0].price}
+            quantity={items.length}
+          />
         ))}
       </View>
     </ScrollView>
