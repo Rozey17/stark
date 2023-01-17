@@ -19,20 +19,21 @@ const CartScreen = () => {
   }, [items]);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={s``}>
-        {Object.entries(groupedItemsInCart).map(([key, items]) => (
-          <CartProduct
-            key={key}
-            id={key}
-            image={items[0].image}
-            name={items[0].name}
-            price={items[0].price}
-            quantity={items.length}
-          />
-        ))}
-      </View>
-    </ScrollView>
+    // <ScrollView showsVerticalScrollIndicator={false}>
+    <View style={s``}>
+      {Object.entries(groupedItemsInCart).map(([key, items]) => (
+        <CartProduct
+          key={key}
+          id={key}
+          image={items[0].image}
+          name={items[0].name}
+          price={items[0].price}
+          quantity={items.length}
+        />
+        // <View></View>
+      ))}
+    </View>
+    // </ScrollView>
   );
 };
 
