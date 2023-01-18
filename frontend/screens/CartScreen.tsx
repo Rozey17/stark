@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../features/cartSlice";
 import { s } from "react-native-wind";
 import CartProduct from "../components/CartProduct";
+import { Entypo } from "@expo/vector-icons";
 
 const CartScreen = () => {
   const items = useSelector(selectCartItems);
@@ -20,11 +21,16 @@ const CartScreen = () => {
 
   return (
     // <ScrollView showsVerticalScrollIndicator={false}>
-    <View style={s`bg-white h-full`}>
+    <View style={s`bg-white h-full `}>
       {items.length === 0 && (
-        <Text style={s`p-5 text-center text-gray-700 font-medium text-center `}>
-          Your cart is empty
-        </Text>
+        <View style={s`items-center mt-10`}>
+          <Entypo name="shopping-cart" size={40} color="black" />
+          <Text
+            style={s`p-5 text-center text-gray-700 text-xl font-medium text-center `}
+          >
+            Your cart is empty
+          </Text>
+        </View>
       )}
       {Object.entries(groupedItemsInCart).map(([key, items]) => (
         <CartProduct
