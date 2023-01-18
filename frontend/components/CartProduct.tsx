@@ -51,25 +51,27 @@ const CartProduct = ({
           {quantity === 1 ? (
             <TouchableOpacity
               onPress={removeItemFromCart}
-              style={s` border bg-gray-100 h-10 w-10 border-r-0 justify-center items-center`}
+              style={s` border bg-gray-100 h-10 w-10 border-gray-500 border-r-0 justify-center items-center rounded-tl-md rounded-bl-md `}
             >
               <Feather name="trash-2" size={20} color="black" />
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
               onPress={removeItemFromCart}
-              style={s` border bg-gray-100 border-r-0 h-10 w-10 justify-center items-center`}
+              style={s` border bg-gray-100 border-r-0 border-gray-500 h-10 w-10 justify-center items-center rounded-tl-md rounded-bl-md `}
             >
               <Text style={s` text-lg`}>-</Text>
             </TouchableOpacity>
           )}
-          <View style={s` border  h-10 w-14 justify-center items-center`}>
-            <Text>{quantity}</Text>
+          <View
+            style={s` border border-gray-500 h-10 w-14 justify-center items-center`}
+          >
+            <Text style={s`text-teal-600 font-medium`}>{quantity}</Text>
           </View>
 
           <TouchableOpacity
             onPress={addItemToCart}
-            style={s` border bg-gray-100 border-l-0 h-10 w-10 justify-center items-center`}
+            style={s` border bg-gray-100 border-gray-500 border-l-0 h-10 w-10 justify-center items-center rounded-tr-md rounded-br-md`}
           >
             <Text style={s` text-lg`}>+</Text>
           </TouchableOpacity>
