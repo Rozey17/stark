@@ -1,19 +1,11 @@
 import { View, Text, ScrollView } from "react-native";
 import React, { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  addToCart,
-  removeFromCart,
-  selectCartItems,
-  selectCartItemsWithId,
-} from "../features/cartSlice";
 import { s } from "react-native-wind";
 import CartProduct from "../components/CartProduct";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Store } from "../utils/store";
 
 const CartScreen = () => {
-  const items = useSelector(selectCartItems);
   //   const items = useSelector((state) => selectCartItemsWithId(state, id));
   // console.log(items);
   // @ts-ignore
