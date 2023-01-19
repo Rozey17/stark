@@ -21,7 +21,7 @@ const CartScreen = () => {
 
   return (
     // <ScrollView showsVerticalScrollIndicator={false}>
-    <View style={s`bg-white h-full `}>
+    <View style={s` h-full `}>
       {items.length === 0 && (
         <View style={s`items-center mt-10`}>
           <Entypo name="shopping-cart" size={40} color="black" />

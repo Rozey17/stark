@@ -8,10 +8,21 @@ import { client } from "../lib/sanity.server";
 import ProductCard from "../components/ProductCard";
 import { ScrollView } from "react-native-gesture-handler";
 import { urlForImage } from "../lib/sanity";
+import { FlatGrid } from "react-native-super-grid";
 
 const DiningScreen = () => {
   const [products, setProducts] = useState([]);
-
+  // Sample Data
+  const itemData = products.map((product) => (
+    <ProductCard
+      key={product._id}
+      id={product._id}
+      name={product.name}
+      price={product.price}
+      image={urlForImage(product.image).url()}
+      description={product.description}
+    />
+  ));
   useEffect(() => {
     client
       .fetch(
@@ -21,29 +32,18 @@ const DiningScreen = () => {
         setProducts(res);
       });
   }, []);
+
   return (
-    <SafeAreaView edges={["bottom", "left", "right", "top"]} style={s`flex-1`}>
-      {/* <ImageBackground source={backgroundImage} style={s`flex-1`}>
-        <View style={s`p-3`}>
-          <Text>Hello</Text>
-        </View>
-      </ImageBackground> */}
-      <View>
-        <ScrollView style={s``}>
-          <View style={s`flex-row flex-1`}>
-            {products.map((product) => (
-              <ProductCard
-                key={product._id}
-                id={product._id}
-                name={product.name}
-                price={product.price}
-                image={urlForImage(product.image).url()}
-                description={product.description}
-              />
-            ))}
-          </View>
-        </ScrollView>
-      </View>
+    <SafeAreaView>
+      <FlatGrid
+        // itemDimension={130}
+        data={itemData}
+        // style={styles.gridView}
+        // staticDimension={300}
+        // fixed
+        spacing={15}
+        renderItem={({ item }) => item}
+      />
     </SafeAreaView>
   );
 };

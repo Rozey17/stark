@@ -42,7 +42,7 @@ const CartProduct = ({
   const totalPrice = price * quantity;
 
   return (
-    <View style={s`flex-row h-28 border-b border-gray-300 p-2`}>
+    <View style={s`flex-row border-b border-gray-300 p-2`}>
       <Image source={{ uri: image }} style={s`w-24 h-full`} />
       <View style={s`px-3 `}>
         <Text style={s`w-48  mb-6 font-medium capitalize`}>{name}</Text>
@@ -64,7 +64,7 @@ const CartProduct = ({
             </TouchableOpacity>
           )}
           <View
-            style={s` border border-gray-500 h-10 w-14 justify-center items-center`}
+            style={s` border border-gray-500 bg-white h-10 w-14 justify-center items-center`}
           >
             <Text style={s`text-teal-600 font-medium`}>{quantity}</Text>
           </View>
@@ -78,7 +78,7 @@ const CartProduct = ({
         </View>
       </View>
       <View style={s`flex-row  justify-end flex-1`}>
-        <Text style={s`font-medium`}>€ {totalPrice.toFixed(2)}</Text>
+        <Text style={s`font-bold`}>€ {totalPrice.toFixed(2)}</Text>
       </View>
     </View>
   );

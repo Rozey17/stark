@@ -20,6 +20,7 @@ import ProductScreen from "../screens/ProductScreen";
 import AccountScreen from "../screens/AccountScreen";
 import { AntDesign } from "@expo/vector-icons";
 import CartScreen from "../screens/CartScreen";
+import { colors, tealColor } from "../constants/colors";
 const Navigation = () => {
   return (
     <NavigationContainer>
@@ -126,17 +127,26 @@ const BottomTab = createBottomTabNavigator();
 
 function BottomTabNavigator() {
   return (
-    <BottomTab.Navigator>
+    <BottomTab.Navigator
+      screenOptions={() => ({
+        tabBarStyle: {
+          // backgroundColor: "#67e8f9",
+        },
+      })}
+    >
       <BottomTab.Screen
         name="Home"
         //@ts-ignore
         component={HomeScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Feather name="home" size={20} color={color} />
+            <Feather name="home" size={24} color={color} />
           ),
           // tabBarShowLabel: false,
           headerShown: false,
+          // tabBarLabelStyle: {
+          //   color: tealColor,
+          // },
         }}
       />
       <BottomTab.Screen
@@ -146,7 +156,7 @@ function BottomTabNavigator() {
         component={ShopStackScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Fontisto name="nav-icon-grid" size={20} color={color} />
+            <Fontisto name="nav-icon-grid" size={24} color={color} />
           ),
           // tabBarShowLabel: false,
           headerShown: false,
@@ -159,7 +169,7 @@ function BottomTabNavigator() {
         component={SearchScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Feather name="search" size={20} color={color} />
+            <Feather name="search" size={24} color={color} />
           ),
           // tabBarShowLabel: false,
           // headerShown: false,
@@ -172,7 +182,7 @@ function BottomTabNavigator() {
         component={WishListScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <AntDesign name="heart" size={20} color={color} />
+            <AntDesign name="heart" size={24} color={color} />
           ),
           // tabBarShowLabel: false,
         }}
@@ -184,7 +194,7 @@ function BottomTabNavigator() {
         component={AccountScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <FontAwesome5 name="user-alt" size={20} color={color} />
+            <FontAwesome5 name="user-alt" size={24} color={color} />
           ),
           // tabBarShowLabel: false,
         }}

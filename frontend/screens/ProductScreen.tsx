@@ -1,4 +1,11 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  ToastAndroid,
+} from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { s } from "react-native-wind";
@@ -10,10 +17,9 @@ import {
   removeFromCart,
   selectCartItemsWithId,
 } from "../features/cartSlice";
-import Header from "../components/Header";
-// import ToastManager, { Toast } from "toastify-react-native";
 import { addToFavorites } from "../features/favoritesSlice";
 import Toast from "react-native-toast-message";
+import { BaseToast } from "react-native-toast-message/lib/src/components/BaseToast";
 
 const ProductScreen = () => {
   const {
@@ -41,6 +47,30 @@ const ProductScreen = () => {
       // text2: "This is some something 👋",
     });
   };
+
+  const addedToCartToast = () => {
+    Toast.show({
+      type: "success",
+      text1: "added to cart !",
+      // text2: "This is some something 👋",
+      // position: "bottom",
+    });
+  };
+
+  // function showToast() {
+  //   ToastAndroid.showWithGravity(
+  //     "Request sent successfully!",
+  //     ToastAndroid.SHORT,
+  //     ToastAndroid.TOP
+  //   );
+  // }
+
+  // const [visible, setVisible] = useState(false);
+
+  // let toast = Toast.show("Request failed to send.", {
+  //   duration: Toast.durations.LONG,
+  //   position: Toast.positions.TOP,
+  // });
 
   const dispatch = useDispatch();
 
@@ -81,8 +111,9 @@ const ProductScreen = () => {
             <TouchableOpacity
               onPress={() => {
                 setSelected(!selected);
-                addItemToFavorites();
+                // addItemToFavorites();
                 showToast();
+                // setVisible(!visible);
               }}
               // style={s`absolute top-2 right-2`}
             >
@@ -104,14 +135,16 @@ const ProductScreen = () => {
         style={s`absolute z-10 bottom-0 p-3 flex-row justify-center items-center border-t border-gray-200 bg-white`}
       >
         <TouchableOpacity
-          onPress={addItemToCart}
+          onPress={() => {
+            addItemToCart();
+            addedToCartToast();
+          }}
           style={s` w-full rounded-md p-2 bg-gray-800 flex-row justify-center items-center`}
         >
           <Entypo name="shopping-cart" size={15} color="white" />
           <Text style={s`text-white text-center ml-3`}>Add to cart</Text>
         </TouchableOpacity>
       </View>
-      <Toast />
     </SafeAreaView>
   );
 };
