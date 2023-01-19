@@ -42,6 +42,7 @@ const FurnitureScreen = () => {
         // staticDimension={300}
         // fixed
         spacing={15}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => item}
       />
     </SafeAreaView>

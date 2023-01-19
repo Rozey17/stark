@@ -43,6 +43,7 @@ const LightingScreen = () => {
         // fixed
         spacing={15}
         renderItem={({ item }) => item}
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
   );
