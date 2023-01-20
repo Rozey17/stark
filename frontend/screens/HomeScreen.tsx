@@ -77,11 +77,11 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
   const favoritesItems = useSelector(selectFavoritesItems);
   // console.log(favoritesItems);
   return (
-    <SafeAreaView style={s` h-full`}>
+    <SafeAreaView style={s`h-full`}>
+      <Header />
+
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* header */}
-
-        <Header />
 
         {/* carousel */}
 
@@ -110,6 +110,24 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
         </View>
 
         {/* best sellers */}
+
+        <View style={s`p-3 pr-0 mt-5`}>
+          <Text style={s`capitalize font-bold text-xl mb-3`}>Best seller</Text>
+          <View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {products.map((product) => (
+                <ProductCard
+                  key={product._id}
+                  id={product._id}
+                  name={product.name}
+                  price={product.price}
+                  image={urlForImage(product.image).url()}
+                  description={product.description}
+                />
+              ))}
+            </ScrollView>
+          </View>
+        </View>
 
         <View style={s`p-3 pr-0 mt-5`}>
           <Text style={s`capitalize font-bold text-xl mb-3`}>Best seller</Text>

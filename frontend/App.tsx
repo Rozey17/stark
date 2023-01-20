@@ -10,6 +10,7 @@ import { store } from "./store";
 import { RootSiblingParent } from "react-native-root-siblings";
 import Toast, { BaseToast } from "react-native-toast-message";
 import { s } from "react-native-wind";
+import { Provider as PaperProvider } from "react-native-paper";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -18,12 +19,14 @@ export default function App() {
     return null;
   } else {
     return (
-      // <RootSiblingParent>
-      <Provider store={store}>
-        <Navigation />
-        <StatusBar style="auto" />
-        <Toast config={toastConfig} />
-      </Provider>
+      <PaperProvider>
+        <Provider store={store}>
+          <Navigation />
+          <StatusBar style="auto" />
+          <Toast config={toastConfig} />
+        </Provider>
+      </PaperProvider>
+
       // </RootSiblingParent>
     );
   }

@@ -41,13 +41,13 @@ function RootNavigator() {
         // hide header
         options={{ headerShown: false }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Product"
         //@ts-ignore
 
         component={ProductScreen}
         options={{ headerShown: false }}
-      />
+      /> */}
       <Stack.Screen
         name="Cart"
         //@ts-ignore
@@ -62,18 +62,25 @@ function RootNavigator() {
 const HomeStack = createNativeStackNavigator();
 const ShopStack = createNativeStackNavigator();
 
-// function HomeStackScreen() {
-//   return (
-//     <HomeStack.Navigator>
-//       <HomeStack.Screen
-//         name="HomeStack"
-//         //@ts-ignore
-//         component={HomeScreen}
-//         options={{ headerShown: false }}
-//       />
-//     </HomeStack.Navigator>
-//   );
-// }
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="HomeScreen"
+        //@ts-ignore
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <HomeStack.Screen
+        name="Product"
+        //@ts-ignore
+
+        component={ProductScreen}
+        options={{ headerShown: false }}
+      />
+    </HomeStack.Navigator>
+  );
+}
 
 function ShopStackScreen() {
   return (
@@ -137,7 +144,7 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="Home"
         //@ts-ignore
-        component={HomeScreen}
+        component={HomeStackScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="home" size={24} color={color} />
