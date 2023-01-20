@@ -10,7 +10,7 @@ import React, { useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { s } from "react-native-wind";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { Entypo, Feather, FontAwesome } from "@expo/vector-icons";
+import { AntDesign, Entypo, Feather, FontAwesome } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -19,7 +19,7 @@ import {
 } from "../features/cartSlice";
 import { addToFavorites } from "../features/favoritesSlice";
 import Toast from "react-native-toast-message";
-import { BaseToast } from "react-native-toast-message/lib/src/components/BaseToast";
+import { Ionicons } from "@expo/vector-icons";
 
 const ProductScreen = () => {
   const {
@@ -28,7 +28,7 @@ const ProductScreen = () => {
   } = useRoute();
   const [selected, setSelected] = useState(false);
 
-  //   const navigation = useNavigation();
+  const navigation = useNavigation();
 
   //   useLayoutEffect(() => {
   //     navigation.setOptions({
@@ -57,21 +57,6 @@ const ProductScreen = () => {
     });
   };
 
-  // function showToast() {
-  //   ToastAndroid.showWithGravity(
-  //     "Request sent successfully!",
-  //     ToastAndroid.SHORT,
-  //     ToastAndroid.TOP
-  //   );
-  // }
-
-  // const [visible, setVisible] = useState(false);
-
-  // let toast = Toast.show("Request failed to send.", {
-  //   duration: Toast.durations.LONG,
-  //   position: Toast.positions.TOP,
-  // });
-
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
@@ -90,20 +75,27 @@ const ProductScreen = () => {
   return (
     <SafeAreaView
       style={s`bg-white relative h-full`}
-      edges={["left", "right", "bottom"]}
+      // edges={["left", "right", "bottom"]}
     >
-      {/* <ToastManager /> */}
+      <View
+        style={s`absolute top-10 z-10 p-3 flex-row w-full items-center justify-between`}
+      >
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <AntDesign name="arrowleft" size={24} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Ionicons name="search-outline" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         // scrollEventThrottle={16}
-        // StickyHeaderComponent={Header}
-        // stickyHeaderIndices={[0]}
       >
         {/* product image */}
 
         <Image source={{ uri: image }} style={s`h-96 w-full`} />
 
-        <View style={s`mt-5 p-2`}>
+        <View style={s`mt-5 p-2 mb-10`}>
           <View style={s`flex-row items-center justify-between`}>
             <Text style={s`font-semibold capitalize text-2xl mb-3`}>
               {name}
@@ -129,9 +121,20 @@ const ProductScreen = () => {
           </Text>
           <Text style={s`font-bold text-xl `}>Description</Text>
           <Text style={s``}>{description}</Text>
+
+          <TouchableOpacity
+            onPress={() => {
+              addItemToCart();
+              addedToCartToast();
+            }}
+            style={s`mt-10 w-full rounded p-3  bg-gray-800 flex-row justify-center items-center`}
+          >
+            <Entypo name="shopping-cart" size={15} color="white" />
+            <Text style={s`text-white text-center ml-3`}>Add to cart</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
-      <View
+      {/* <View
         style={s`absolute z-10 bottom-0 p-3 flex-row justify-center items-center border-t border-gray-200 bg-white`}
       >
         <TouchableOpacity
@@ -144,7 +147,7 @@ const ProductScreen = () => {
           <Entypo name="shopping-cart" size={15} color="white" />
           <Text style={s`text-white text-center ml-3`}>Add to cart</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </SafeAreaView>
   );
 };

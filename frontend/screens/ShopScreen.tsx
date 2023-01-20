@@ -4,16 +4,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { s } from "react-native-wind";
 import { Entypo } from "@expo/vector-icons";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
+import Header from "../components/Header";
 
 const ShopScreen = ({ navigation }: NativeStackHeaderProps) => {
   return (
     <SafeAreaView style={s``}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={s`flex flex-row justify-between items-center p-3`}>
-          <Entypo name="menu" size={24} color="black" />
-          <Text>Stark</Text>
-          <Entypo name="shopping-cart" size={24} color="black" />
-        </View>
+        <Header />
         <View style={s`p-3 space-y-2`}>
           <Pressable
             onPress={() => navigation.navigate("Living")}

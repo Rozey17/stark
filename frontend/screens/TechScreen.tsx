@@ -44,6 +44,7 @@ const TechScreen = () => {
         spacing={15}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => item}
+        scrollEventThrottle={16}
       />
     </SafeAreaView>
   );

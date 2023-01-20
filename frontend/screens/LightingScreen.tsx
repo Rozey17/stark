@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground } from "react-native";
+import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { s } from "react-native-wind";
 //@ts-ignore
@@ -9,8 +9,11 @@ import ProductCard from "../components/ProductCard";
 import { ScrollView } from "react-native-gesture-handler";
 import { urlForImage } from "../lib/sanity";
 import { FlatGrid } from "react-native-super-grid";
+import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const LightingScreen = () => {
+  const navigation = useNavigation();
   const [products, setProducts] = useState([]);
   // Sample Data
   const itemData = products.map((product) => (
@@ -35,6 +38,12 @@ const LightingScreen = () => {
 
   return (
     <SafeAreaView>
+      {/* <View style={s`p-5 bg-white flex-row justify-between items-center`}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <AntDesign name="arrowleft" size={24} color="black" />
+        </TouchableOpacity>
+        <Text style={s`font-bold text-center`}>Living</Text>
+      </View> */}
       <FlatGrid
         // itemDimension={130}
         data={itemData}

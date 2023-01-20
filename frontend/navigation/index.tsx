@@ -46,7 +46,7 @@ function RootNavigator() {
         //@ts-ignore
 
         component={ProductScreen}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Cart"
