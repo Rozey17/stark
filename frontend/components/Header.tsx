@@ -7,10 +7,10 @@ import CartIcon from "./CartIcon";
 
 const Header = () => {
   return (
-    <View style={s`flex flex-row justify-between items-center p-3`}>
+    <View style={s`flex flex-row justify-between items-center p-3 bg-white`}>
       {/* <Entypo name="menu" size={24} color="black" /> */}
       <ModalComponent />
-      <Text>Stark</Text>
+      <Text style={s`font-bold text-3xl`}>Stark</Text>
       <CartIcon />
     </View>
   );

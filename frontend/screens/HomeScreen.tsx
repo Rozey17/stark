@@ -80,7 +80,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
     <SafeAreaView style={s`h-full`}>
       <Header />
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
         {/* header */}
 
         {/* carousel */}

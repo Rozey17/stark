@@ -1,20 +1,16 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import Navigation from "./navigation";
 import "react-native-gesture-handler";
 import useCachedResources from "./hooks/useCachedResources";
-import { ApolloProvider } from "@apollo/client";
-import { initializeApollo, useApollo } from "./lib/graphql.server";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import { RootSiblingParent } from "react-native-root-siblings";
 import Toast, { BaseToast } from "react-native-toast-message";
 import { s } from "react-native-wind";
 import { Provider as PaperProvider } from "react-native-paper";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
-  const client = initializeApollo();
   if (!isLoadingComplete) {
     return null;
   } else {
@@ -26,8 +22,6 @@ export default function App() {
           <Toast config={toastConfig} />
         </Provider>
       </PaperProvider>
-
-      // </RootSiblingParent>
     );
   }
 }
@@ -60,3 +54,5 @@ const toastConfig = {
     />
   ),
 };
+
+

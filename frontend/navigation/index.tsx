@@ -72,61 +72,48 @@ function HomeStackScreen() {
         options={{ headerShown: false }}
       />
       <HomeStack.Screen
-        name="Product"
-        //@ts-ignore
-
-        component={ProductScreen}
-        options={{ headerShown: false }}
-      />
-    </HomeStack.Navigator>
-  );
-}
-
-function ShopStackScreen() {
-  return (
-    <ShopStack.Navigator>
-      <ShopStack.Screen
-        name="ShopScreen"
+        name="Shop"
         //@ts-ignore
         component={ShopScreen}
         options={{ headerShown: false }}
       />
-      <ShopStack.Screen
+      <HomeStack.Screen
         name="Living"
         //@ts-ignore
-
         component={LivingScreen}
         options={{ headerShown: false }}
       />
-      <ShopStack.Screen
+      <HomeStack.Screen
         name="Dining"
         //@ts-ignore
-
         component={DiningScreen}
         options={{ headerShown: false }}
       />
-      <ShopStack.Screen
+      <HomeStack.Screen
         name="Furniture"
         //@ts-ignore
-
         component={FurnitureScreen}
         options={{ headerShown: false }}
       />
-      <ShopStack.Screen
+      <HomeStack.Screen
         name="Lighting"
         //@ts-ignore
-
         component={LightingScreen}
         options={{ headerShown: false }}
       />
-      <ShopStack.Screen
+      <HomeStack.Screen
         name="Tech"
         //@ts-ignore
-
         component={TechScreen}
-        // options={{ headerShown: false }}
+        options={{ headerShown: false }}
       />
-    </ShopStack.Navigator>
+      <HomeStack.Screen
+        name="Product"
+        //@ts-ignore
+        component={ProductScreen}
+        options={{ headerShown: false }}
+      />
+    </HomeStack.Navigator>
   );
 }
 
@@ -147,28 +134,16 @@ function BottomTabNavigator() {
         component={HomeStackScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Feather name="home" size={24} color={color} />
+            <Feather name="home" size={22} color={color} />
           ),
           // tabBarShowLabel: false,
           headerShown: false,
-          // tabBarLabelStyle: {
-          //   color: tealColor,
-          // },
+          tabBarLabelStyle: {
+            fontSize: 12,
+          },
         }}
       />
-      <BottomTab.Screen
-        name="Shop"
-        //@ts-ignore
 
-        component={ShopStackScreen}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <Fontisto name="nav-icon-grid" size={24} color={color} />
-          ),
-          // tabBarShowLabel: false,
-          headerShown: false,
-        }}
-      />
       <BottomTab.Screen
         name="Search"
         //@ts-ignore
@@ -176,8 +151,11 @@ function BottomTabNavigator() {
         component={SearchScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <Feather name="search" size={24} color={color} />
+            <Feather name="search" size={22} color={color} />
           ),
+          tabBarLabelStyle: {
+            fontSize: 12,
+          },
           // tabBarShowLabel: false,
           // headerShown: false,
         }}
@@ -189,8 +167,11 @@ function BottomTabNavigator() {
         component={WishListScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <AntDesign name="heart" size={24} color={color} />
+            <AntDesign name="heart" size={22} color={color} />
           ),
+          tabBarLabelStyle: {
+            fontSize: 12,
+          },
           // tabBarShowLabel: false,
         }}
       />
@@ -201,8 +182,11 @@ function BottomTabNavigator() {
         component={AccountScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <FontAwesome5 name="user-alt" size={24} color={color} />
+            <FontAwesome5 name="user-alt" size={22} color={color} />
           ),
+          tabBarLabelStyle: {
+            fontSize: 12,
+          },
           // tabBarShowLabel: false,
         }}
       />
