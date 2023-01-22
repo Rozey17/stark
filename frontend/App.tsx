@@ -1,10 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
-
 import "react-native-gesture-handler";
-
 import { Provider } from "react-redux";
-
 import Toast, { BaseToast } from "react-native-toast-message";
 import { s } from "react-native-wind";
 import { Provider as PaperProvider } from "react-native-paper";

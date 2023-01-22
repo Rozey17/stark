@@ -19,6 +19,7 @@ import {
 } from "../features/cartSlice";
 import Toast from "react-native-toast-message";
 import { Ionicons } from "@expo/vector-icons";
+import { urlForImage } from "../lib/sanity";
 
 const ProductScreen = () => {
   // const {
@@ -62,12 +63,6 @@ const ProductScreen = () => {
   const addItemToCart = () => {
     dispatch(addToCart({ product }));
   };
-  // const removeItemFromCart = () => {
-  //   if (items.length <= 0) return;
-  //   dispatch(removeFromCart({ id }));
-  // };
-
-  // const items = useSelector((state) => selectCartItemsWithId(state, id));
 
   return (
     <SafeAreaView
@@ -90,7 +85,10 @@ const ProductScreen = () => {
       >
         {/* product image */}
 
-        {/* <Image source={{ uri: product.image }} style={s`h-96 w-full`} /> */}
+        <Image
+          source={{ uri: urlForImage(product.image).url() }}
+          style={s`h-96 w-full`}
+        />
 
         <View style={s`mt-5 p-2 mb-10`}>
           <View style={s`flex-row items-center justify-between`}>

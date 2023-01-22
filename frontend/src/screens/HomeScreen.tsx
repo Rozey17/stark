@@ -87,7 +87,11 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
         {/* best sellers */}
 
         <View style={s`p-3 pr-0 mt-5`}>
-          <Text style={s`capitalize font-bold text-xl mb-3`}>Best seller</Text>
+          <Text
+            style={[{ fontFamily: "jost-bold" }, s`capitalize text-xl mb-3`]}
+          >
+            Best seller
+          </Text>
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {products.map((product) => (

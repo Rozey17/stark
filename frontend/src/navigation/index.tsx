@@ -140,6 +140,7 @@ function BottomTabNavigator() {
           headerShown: false,
           tabBarLabelStyle: {
             fontSize: 12,
+            fontFamily: "jost-medium",
           },
         }}
       />
@@ -155,6 +156,7 @@ function BottomTabNavigator() {
           ),
           tabBarLabelStyle: {
             fontSize: 12,
+            fontFamily: "jost-medium",
           },
           // tabBarShowLabel: false,
           // headerShown: false,
@@ -171,6 +173,7 @@ function BottomTabNavigator() {
           ),
           tabBarLabelStyle: {
             fontSize: 12,
+            fontFamily: "jost-medium",
           },
           // tabBarShowLabel: false,
         }}
@@ -186,6 +189,7 @@ function BottomTabNavigator() {
           ),
           tabBarLabelStyle: {
             fontSize: 12,
+            fontFamily: "jost-medium",
           },
           // tabBarShowLabel: false,
         }}

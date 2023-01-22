@@ -57,7 +57,7 @@ const Product = ({ item }) => {
       style={s`h-72 w-48`}
       onPress={() =>
         //@ts-ignore
-        navigation.push("Product", {
+        navigation.navigate("Product", {
           product: item,
         })
       }
@@ -112,8 +112,10 @@ const Product = ({ item }) => {
         </View>
       </View>
       <View>
-        <Text style={s`capitalize`}>{item.name}</Text>
-        <Text>$ {item.price}</Text>
+        <Text style={[{ fontFamily: "jost-regular" }, s`capitalize `]}>
+          {item.name}
+        </Text>
+        <Text style={{ fontFamily: "jost-regular" }}>$ {item.price}</Text>
       </View>
       <View style={s`flex flex-row`}>
         <Entypo name="star" size={14} color="#DAA520" />
