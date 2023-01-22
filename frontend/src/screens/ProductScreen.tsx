@@ -27,7 +27,8 @@ const ProductScreen = () => {
     params: { id, name, description, price, image },
   } = useRoute();
   const [selected, setSelected] = useState(false);
-
+  //  const route = useRoute();
+  //  const { room }: any = route.params || {};
   const navigation = useNavigation();
 
   //   useLayoutEffect(() => {
