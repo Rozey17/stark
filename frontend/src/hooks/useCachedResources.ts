@@ -8,9 +8,7 @@ const useCachedResources = () => {
     async function loadResourcesAndDataAsync() {
       try {
         await Font.loadAsync({
-          "poppins-regular": require("../assets/fonts/Poppins-Regular.ttf"),
-          "poppins-semibold": require("../assets/fonts/Poppins-SemiBold.ttf"),
-          "poppins-bold": require("../assets/fonts/Poppins-Bold.ttf"),
+          "jost-regular": require("../../assets/fonts/jost/Jost-Regular.ttf"),
         });
       } catch (error) {
         console.warn(error);

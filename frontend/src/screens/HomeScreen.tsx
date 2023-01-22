@@ -21,7 +21,6 @@ import { client } from "../lib/sanity.server";
 import { urlForImage } from "../lib/sanity";
 import { addToCart, selectCartItems } from "../features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { selectFavoritesItems } from "../features/favoritesSlice";
 import Header from "../components/Header";
 import Carousel from "../components/Carousel";
 
@@ -92,15 +91,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {products.map((product) => (
-                <Product
-                  key={product._id}
-                  id={product._id}
-                  name={product.name}
-                  price={product.price}
-                  image={urlForImage(product.image).url()}
-                  description={product.description}
-                  item={product}
-                />
+                <Product key={product._id} item={product} />
               ))}
             </ScrollView>
           </View>
@@ -111,15 +102,7 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {products.map((product) => (
-                <Product
-                  key={product._id}
-                  id={product._id}
-                  name={product.name}
-                  price={product.price}
-                  image={urlForImage(product.image).url()}
-                  description={product.description}
-                  item={product}
-                />
+                <Product key={product._id} item={product} />
               ))}
             </ScrollView>
           </View>

@@ -1,13 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
-import Navigation from "./navigation";
+
 import "react-native-gesture-handler";
-import useCachedResources from "./hooks/useCachedResources";
+
 import { Provider } from "react-redux";
-import { store } from "./store";
+
 import Toast, { BaseToast } from "react-native-toast-message";
 import { s } from "react-native-wind";
 import { Provider as PaperProvider } from "react-native-paper";
+import useCachedResources from "./src/hooks/useCachedResources";
+import { store } from "./src/store";
+import Navigation from "./src/navigation";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();

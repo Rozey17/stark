@@ -12,34 +12,17 @@ import { Entypo, Feather, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, selectCartItems } from "../features/cartSlice";
-import {
-  addToFavorites,
-  selectFavoritesItems,
-} from "../features/favoritesSlice";
 import Like from "./Like";
 import { addToWishlist, removeFromWishlist } from "../features/wishListSlice";
+import { urlForImage } from "../lib/sanity";
 
-const Product = ({
-  id,
-  name,
-  price,
-  image,
-  description,
-  item,
-}: {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  description: string;
-  item: any;
-}) => {
+const Product = ({ item }) => {
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
-    dispatch(addToCart({ id, name, description, image, price }));
+    dispatch(addToCart({ item }));
   };
 
   const wishlist = useSelector((state: any) => state.wishlist.list);
@@ -75,11 +58,7 @@ const Product = ({
       onPress={() =>
         //@ts-ignore
         navigation.push("Product", {
-          id,
-          name,
-          price,
-          image,
-          description,
+          product: item,
         })
       }
     >
@@ -87,9 +66,10 @@ const Product = ({
         {/* product image */}
 
         <Image
-          source={{
-            uri: image,
-          }}
+          // source={{
+          //   uri: item.image,
+          // }}
+          source={{ uri: urlForImage(item.image).url() }}
           style={s`bg-contain h-full w-full `}
         />
 
@@ -110,7 +90,7 @@ const Product = ({
           )}
         </TouchableOpacity> */}
 
-        <Like item={item} />
+        {/* <Like item={item} /> */}
 
         {/* add to cart button */}
 
@@ -132,8 +112,8 @@ const Product = ({
         </View>
       </View>
       <View>
-        <Text style={s`capitalize`}>{name}</Text>
-        <Text>$ {price}</Text>
+        <Text style={s`capitalize`}>{item.name}</Text>
+        <Text>$ {item.price}</Text>
       </View>
       <View style={s`flex flex-row`}>
         <Entypo name="star" size={14} color="#DAA520" />

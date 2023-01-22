@@ -17,18 +17,17 @@ import {
   removeFromCart,
   selectCartItemsWithId,
 } from "../features/cartSlice";
-import { addToFavorites } from "../features/favoritesSlice";
 import Toast from "react-native-toast-message";
 import { Ionicons } from "@expo/vector-icons";
 
 const ProductScreen = () => {
-  const {
-    //@ts-ignore
-    params: { id, name, description, price, image },
-  } = useRoute();
+  // const {
+  //   //@ts-ignore
+  //   params: { id, name, description, price, image },
+  // } = useRoute();
   const [selected, setSelected] = useState(false);
-  //  const route = useRoute();
-  //  const { room }: any = route.params || {};
+  const route = useRoute();
+  const { product }: any = route.params || {};
   const navigation = useNavigation();
 
   //   useLayoutEffect(() => {
@@ -61,17 +60,14 @@ const ProductScreen = () => {
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
-    dispatch(addToCart({ id, name, description, image, price }));
+    dispatch(addToCart({ product }));
   };
-  const removeItemFromCart = () => {
-    if (items.length <= 0) return;
-    dispatch(removeFromCart({ id }));
-  };
+  // const removeItemFromCart = () => {
+  //   if (items.length <= 0) return;
+  //   dispatch(removeFromCart({ id }));
+  // };
 
-  const items = useSelector((state) => selectCartItemsWithId(state, id));
-  const addItemToFavorites = () => {
-    dispatch(addToFavorites({ id, name, description, image, price }));
-  };
+  // const items = useSelector((state) => selectCartItemsWithId(state, id));
 
   return (
     <SafeAreaView
@@ -94,12 +90,12 @@ const ProductScreen = () => {
       >
         {/* product image */}
 
-        <Image source={{ uri: image }} style={s`h-96 w-full`} />
+        {/* <Image source={{ uri: product.image }} style={s`h-96 w-full`} /> */}
 
         <View style={s`mt-5 p-2 mb-10`}>
           <View style={s`flex-row items-center justify-between`}>
             <Text style={s`font-semibold capitalize text-2xl mb-3`}>
-              {name}
+              {product.name}
             </Text>
             <TouchableOpacity
               onPress={() => {
@@ -118,10 +114,10 @@ const ProductScreen = () => {
             </TouchableOpacity>
           </View>
           <Text style={s`font-semibold capitalize text-lg mb-3`}>
-            € {price}
+            € {product.price}
           </Text>
           <Text style={s`font-bold text-xl `}>Description</Text>
-          <Text style={s``}>{description}</Text>
+          <Text style={s``}>{product.description}</Text>
 
           <TouchableOpacity
             onPress={() => {

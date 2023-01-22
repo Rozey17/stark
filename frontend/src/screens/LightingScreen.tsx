@@ -17,15 +17,7 @@ const LightingScreen = () => {
   const [products, setProducts] = useState([]);
   // Sample Data
   const itemData = products.map((product) => (
-    <Product
-      key={product._id}
-      id={product._id}
-      name={product.name}
-      price={product.price}
-      image={urlForImage(product.image).url()}
-      description={product.description}
-      item={product}
-    />
+    <Product key={product._id} item={product} />
   ));
   useEffect(() => {
     client
