@@ -5,28 +5,29 @@ import { s } from "react-native-wind";
 import backgroundImage from "../assets/images/pexels-laker-6156383.jpg";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { client } from "../lib/sanity.server";
-import ProductCard from "../components/ProductCard";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import Product from "../components/Product";
+import { ScrollView } from "react-native-gesture-handler";
 import { urlForImage } from "../lib/sanity";
 import { FlatGrid } from "react-native-super-grid";
 
-const LivingScreen = () => {
+const TechScreen = () => {
   const [products, setProducts] = useState([]);
   // Sample Data
   const itemData = products.map((product) => (
-    <ProductCard
+    <Product
       key={product._id}
       id={product._id}
       name={product.name}
       price={product.price}
       image={urlForImage(product.image).url()}
       description={product.description}
+      item={product}
     />
   ));
   useEffect(() => {
     client
       .fetch(
-        `*[_type == 'product' && references(*[_type=="category" && name == 'living']._id)]`
+        `*[_type == 'product' && references(*[_type=="category" && name == 'tech']._id)]`
       )
       .then((res) => {
         setProducts(res);
@@ -44,14 +45,10 @@ const LivingScreen = () => {
         spacing={15}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => item}
+        scrollEventThrottle={16}
       />
     </SafeAreaView>
   );
 };
 
-
-
-
-
-
-export default LivingScreen;
+export default TechScreen;

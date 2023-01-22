@@ -5,7 +5,7 @@ import { s } from "react-native-wind";
 import backgroundImage from "../assets/images/pexels-laker-6156383.jpg";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { client } from "../lib/sanity.server";
-import ProductCard from "../components/ProductCard";
+import Product from "../components/Product";
 import { ScrollView } from "react-native-gesture-handler";
 import { urlForImage } from "../lib/sanity";
 import { FlatGrid } from "react-native-super-grid";
@@ -14,13 +14,14 @@ const FurnitureScreen = () => {
   const [products, setProducts] = useState([]);
   // Sample Data
   const itemData = products.map((product) => (
-    <ProductCard
+    <Product
       key={product._id}
       id={product._id}
       name={product.name}
       price={product.price}
       image={urlForImage(product.image).url()}
       description={product.description}
+      item={product}
     />
   ));
   useEffect(() => {

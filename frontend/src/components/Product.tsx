@@ -1,4 +1,11 @@
-import { View, Text, Pressable, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 import React, { useState } from "react";
 import { s } from "react-native-wind";
 import { Entypo, Feather, FontAwesome } from "@expo/vector-icons";
@@ -9,35 +16,58 @@ import {
   addToFavorites,
   selectFavoritesItems,
 } from "../features/favoritesSlice";
+import Like from "./Like";
+import { addToWishlist, removeFromWishlist } from "../features/wishListSlice";
 
-const ProductCard = ({
+const Product = ({
   id,
   name,
   price,
   image,
   description,
+  item,
 }: {
   id: string;
   name: string;
   price: number;
   image: string;
   description: string;
+  item: any;
 }) => {
-  const [selected, setSelected] = useState(false);
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
-
-  // const cartItems = useSelector(selectCartItems);
-  // const favoritesItems = useSelector(selectFavoritesItems);
 
   const addItemToCart = () => {
     dispatch(addToCart({ id, name, description, image, price }));
   };
 
-  const addItemToFavorites = () => {
-    dispatch(addToFavorites({ id, name, description, image, price }));
+  const wishlist = useSelector((state: any) => state.wishlist.list);
+  const productList = useSelector((state: any) => state.cart.list);
+  const itemExist = (id: string) => {
+    return wishlist.find((i: string) => i === id);
   };
+
+  const removeFromWishlistHandler = (id: string) => {
+    return Alert.alert(
+      "Alert!",
+      "Are you sure you want to delete from wishlist ?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => dispatch(removeFromWishlist(id)),
+        },
+      ]
+    );
+  };
+  //  const productExist = (item: string) => {
+  //    return productList.find((i: string) => i.id === item.id);
+  //  };
 
   return (
     <Pressable
@@ -64,20 +94,23 @@ const ProductCard = ({
         />
 
         {/* add to favorites button */}
-
+        {/* 
         <TouchableOpacity
           onPress={() => {
-            setSelected(!selected);
-            addItemToFavorites();
+            itemExist(id)
+              ? removeFromWishlistHandler(id)
+              : dispatch(addToWishlist(id));
           }}
           style={s`absolute top-2 right-2`}
         >
-          {selected ? (
+          {itemExist(item) ? (
             <FontAwesome name="heart" size={24} color="red" />
           ) : (
             <Feather name="heart" size={24} color="black" />
           )}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+
+        <Like item={item} />
 
         {/* add to cart button */}
 
@@ -113,4 +146,4 @@ const ProductCard = ({
   );
 };
 
-export default ProductCard;
+export default Product;

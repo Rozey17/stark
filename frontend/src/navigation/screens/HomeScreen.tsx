@@ -15,7 +15,7 @@ import { Entypo, Feather } from "@expo/vector-icons";
 import Slick from "react-native-slick";
 import ModalComponent from "../components/Modal";
 import CategoryCard from "../components/CategoryCard";
-import ProductCard from "../components/ProductCard";
+import Product from "../components/Product";
 
 import { client } from "../lib/sanity.server";
 import { urlForImage } from "../lib/sanity";
@@ -27,38 +27,6 @@ import Carousel from "../components/Carousel";
 
 const window = Dimensions.get("window");
 const PAGE_WIDTH = window.width;
-export const ENTRIES1 = [
-  {
-    title: "Beautiful and dramatic Antelope Canyon",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
-    illustration: "http://i.imgur.com/UYiroysl.jpg",
-  },
-  {
-    title: "Earlier this morning, NYC",
-    subtitle: "Lorem ipsum dolor sit amet",
-    illustration: "http://i.imgur.com/UPrs1EWl.jpg",
-  },
-  {
-    title: "White Pocket Sunset",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat ",
-    illustration: "http://i.imgur.com/MABUbpDl.jpg",
-  },
-  {
-    title: "Acrocorinth, Greece",
-    subtitle: "Lorem ipsum dolor sit amet et nuncat mergitur",
-    illustration: "http://i.imgur.com/KZsmUi2l.jpg",
-  },
-  {
-    title: "The lone tree, majestic landscape of New Zealand",
-    subtitle: "Lorem ipsum dolor sit amet",
-    illustration: "http://i.imgur.com/2nCt3Sbl.jpg",
-  },
-  {
-    title: "Middle Earth, Germany",
-    subtitle: "Lorem ipsum dolor sit amet",
-    illustration: "http://i.imgur.com/lceHsT6l.jpg",
-  },
-];
 
 const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
   const [categories, setCategories] = useState([]);
@@ -74,13 +42,17 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
   }, []);
 
   const items = useSelector(selectCartItems);
-  const favoritesItems = useSelector(selectFavoritesItems);
+  // const favoritesItems = useSelector(selectFavoritesItems);
   // console.log(favoritesItems);
   return (
     <SafeAreaView style={s`h-full`}>
       <Header />
 
-      <ScrollView showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        scrollEventThrottle={16}
+        bounces={false}
+      >
         {/* header */}
 
         {/* carousel */}
@@ -97,7 +69,11 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
             </TouchableOpacity>
           </View>
           <View style={s`pl-3`}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              bounces={false}
+            >
               {categories.map((item) => (
                 <CategoryCard
                   key={item._id}
@@ -116,13 +92,14 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {products.map((product) => (
-                <ProductCard
+                <Product
                   key={product._id}
                   id={product._id}
                   name={product.name}
                   price={product.price}
                   image={urlForImage(product.image).url()}
                   description={product.description}
+                  item={product}
                 />
               ))}
             </ScrollView>
@@ -134,13 +111,14 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
           <View>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {products.map((product) => (
-                <ProductCard
+                <Product
                   key={product._id}
                   id={product._id}
                   name={product.name}
                   price={product.price}
                   image={urlForImage(product.image).url()}
                   description={product.description}
+                  item={product}
                 />
               ))}
             </ScrollView>
