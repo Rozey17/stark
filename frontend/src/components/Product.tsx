@@ -84,9 +84,9 @@ const Product = ({ item }) => {
           style={s`absolute top-2 right-2`}
         >
           {itemExist(item) ? (
-            <FontAwesome name="heart" size={24} color="red" />
+            <FontAwesome name="heart" size={20} color="red" />
           ) : (
-            <Feather name="heart" size={24} color="black" />
+            <Feather name="heart" size={20} color="black" />
           )}
         </TouchableOpacity>
 
@@ -100,7 +100,7 @@ const Product = ({ item }) => {
         >
           <Entypo name="squared-plus" size={24} color="black" />
         </TouchableOpacity>
-        <View
+        {/* <View
           style={s`rounded overflow-hidden flex flex-row absolute top-2 left-2 `}
         >
           <View style={s`bg-red-500 px-1 `}>
@@ -109,7 +109,7 @@ const Product = ({ item }) => {
           <View style={s`bg-cyan-600 px-1 `}>
             <Text style={s`text-white text-xs`}>New</Text>
           </View>
-        </View>
+        </View> */}
       </View>
       <View>
         <Text style={[{ fontFamily: "jost-regular" }, s`capitalize `]}>

@@ -7,21 +7,17 @@ import { addToWishlist, removeFromWishlist } from "../features/wishListSlice";
 import { s } from "react-native-wind";
 
 interface Product {
-  id: string;
+  _id: string;
   name: string;
   price: number;
   description: string;
   image: string;
 }
 
-const Like = ({ item }: { item: Product }) => {
+const Like = ({ item }) => {
   const wishlist = useSelector((state: any) => state.wishlist.list);
-  const productList = useSelector((state: any) => state.cart.list);
   const itemExist = (item: any) => {
     return wishlist.find((i: any) => i.id === item.id);
-  };
-  const productExist = (item: any) => {
-    return productList.find((i: any) => i.id === item.id);
   };
 
   const dispatch = useDispatch();
@@ -53,9 +49,9 @@ const Like = ({ item }: { item: Product }) => {
       style={s`absolute top-2 right-2 z-10`}
     >
       {itemExist(item) ? (
-        <FontAwesome name="heart" size={24} color="red" />
+        <FontAwesome name="heart" size={20} color="red" />
       ) : (
-        <Feather name="heart" size={24} color="black" />
+        <Feather name="heart" size={20} color="black" />
       )}
     </TouchableOpacity>
   );

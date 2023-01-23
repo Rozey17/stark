@@ -66,7 +66,7 @@ const ProductScreen = () => {
     dispatch(addToCart({ product }));
   };
   const wishlist = useSelector((state: any) => state.wishlist.list);
-  const productList = useSelector((state: any) => state.cart.list);
+
   const itemExist = (product: any) => {
     return wishlist.find((i: any) => i._id === product._id);
   };

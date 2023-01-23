@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { s } from "react-native-wind";
 import { urlForImage } from "../lib/sanity";
-import FavoriteProductCard from "../components/FavoriteProductCard";
+import FavoriteProduct from "../components/FavoriteProduct";
 // import { itemsInWishlist } from "../features/wishListSlice";
 
 const WishListScreen = () => {
@@ -12,7 +12,7 @@ const WishListScreen = () => {
   return (
     <View style={s``}>
       {favoritesItems.map((product) => (
-        <FavoriteProductCard key={product.name} product={product} />
+        <FavoriteProduct key={product.name} product={product} />
       ))}
     </View>
   );
