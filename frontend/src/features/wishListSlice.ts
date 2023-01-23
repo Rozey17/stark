@@ -10,7 +10,7 @@ const wishlistSlice = createSlice({
   reducers: {
     addToWishlist: (state, action) => {
       const inWishlist = state.list.find(
-        (id: string) => id === action.payload.id
+        (item: any) => item._id === action.payload._id
       );
 
       if (!inWishlist) {
@@ -21,12 +21,12 @@ const wishlistSlice = createSlice({
     },
     removeFromWishlist: (state, action) => {
       const inWishlist = state.list.find(
-        (id: string) => id === action.payload.id
+        (item: any) => item._id === action.payload._id
       );
 
       if (inWishlist) {
         state.list = state.list.filter(
-          (id: string) => id !== action.payload.id
+          (item: any) => item._id !== action.payload._id
         );
       }
     },
@@ -34,8 +34,6 @@ const wishlistSlice = createSlice({
 });
 
 export const { addToWishlist, removeFromWishlist } = wishlistSlice.actions;
-
-// export const itemsInWishlist = (state) => state.wishlist.list;
 
 export default wishlistSlice.reducer;
 function item(item: any): any {

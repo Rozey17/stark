@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ToastAndroid,
+  Alert,
 } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -20,6 +21,7 @@ import {
 import Toast from "react-native-toast-message";
 import { Ionicons } from "@expo/vector-icons";
 import { urlForImage } from "../lib/sanity";
+import { addToWishlist, removeFromWishlist } from "../features/wishListSlice";
 
 const ProductScreen = () => {
   // const {
@@ -63,7 +65,29 @@ const ProductScreen = () => {
   const addItemToCart = () => {
     dispatch(addToCart({ product }));
   };
+  const wishlist = useSelector((state: any) => state.wishlist.list);
+  const productList = useSelector((state: any) => state.cart.list);
+  const itemExist = (product: any) => {
+    return wishlist.find((i: any) => i._id === product._id);
+  };
 
+  const removeFromWishlistHandler = (product: any) => {
+    return Alert.alert(
+      "Message",
+      "Are you sure you want to delete from wishlist ?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => dispatch(removeFromWishlist(product)),
+        },
+      ]
+    );
+  };
   return (
     <SafeAreaView
       style={s`bg-white relative h-full`}
@@ -99,14 +123,13 @@ const ProductScreen = () => {
             </Text>
             <TouchableOpacity
               onPress={() => {
-                setSelected(!selected);
-                // addItemToFavorites();
-                showToast();
-                // setVisible(!visible);
+                itemExist(product)
+                  ? removeFromWishlistHandler(product)
+                  : dispatch(addToWishlist(product));
               }}
-              // style={s`absolute top-2 right-2`}
+              style={s`absolute top-2 right-2`}
             >
-              {selected ? (
+              {itemExist(product) ? (
                 <FontAwesome name="heart" size={24} color="red" />
               ) : (
                 <Feather name="heart" size={24} color="black" />

@@ -27,13 +27,13 @@ const Product = ({ item }) => {
 
   const wishlist = useSelector((state: any) => state.wishlist.list);
   const productList = useSelector((state: any) => state.cart.list);
-  const itemExist = (id: string) => {
-    return wishlist.find((i: string) => i === id);
+  const itemExist = (item: any) => {
+    return wishlist.find((i: any) => i._id === item._id);
   };
 
-  const removeFromWishlistHandler = (id: string) => {
+  const removeFromWishlistHandler = (item: any) => {
     return Alert.alert(
-      "Alert!",
+      "Message",
       "Are you sure you want to delete from wishlist ?",
       [
         {
@@ -43,7 +43,7 @@ const Product = ({ item }) => {
         },
         {
           text: "OK",
-          onPress: () => dispatch(removeFromWishlist(id)),
+          onPress: () => dispatch(removeFromWishlist(item)),
         },
       ]
     );
@@ -74,12 +74,12 @@ const Product = ({ item }) => {
         />
 
         {/* add to favorites button */}
-        {/* 
+
         <TouchableOpacity
           onPress={() => {
-            itemExist(id)
-              ? removeFromWishlistHandler(id)
-              : dispatch(addToWishlist(id));
+            itemExist(item)
+              ? removeFromWishlistHandler(item)
+              : dispatch(addToWishlist(item));
           }}
           style={s`absolute top-2 right-2`}
         >
@@ -88,7 +88,7 @@ const Product = ({ item }) => {
           ) : (
             <Feather name="heart" size={24} color="black" />
           )}
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         {/* <Like item={item} /> */}
 
