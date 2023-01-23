@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       const index = state.items.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item._id === action.payload._id
       );
       let newCart = [...state.items];
       if (index >= 0) {

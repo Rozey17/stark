@@ -9,22 +9,9 @@ import {
 } from "../features/cartSlice";
 import { useRoute } from "@react-navigation/native";
 import { AntDesign, Feather } from "@expo/vector-icons";
+import { urlForImage } from "../lib/sanity";
 
-const CartProduct = ({
-  id,
-  name,
-  image,
-  price,
-  // description,
-  quantity,
-}: {
-  id: string;
-  name: string;
-  image: string;
-  price: number;
-  // description: string;
-  quantity: number;
-}) => {
+const CartProduct = ({ product, quantity }) => {
   // const {
   //   //@ts-ignore
   //   params: { id, name, description, price, image },
@@ -32,20 +19,23 @@ const CartProduct = ({
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
-    dispatch(addToCart({ id, name, image, price }));
+    dispatch(addToCart({ product }));
   };
   const removeItemFromCart = () => {
     if (quantity <= 0) return;
-    dispatch(removeFromCart({ id }));
+    dispatch(removeFromCart({ product }));
   };
 
-  const totalPrice = price * quantity;
+  // const totalPrice = price * quantity;
 
   return (
     <View style={s`flex-row border-b border-gray-300 p-2`}>
-      <Image source={{ uri: image }} style={s`w-24 h-full`} />
+      {/* <Image
+        source={{ uri: urlForImage(product.image).url() }}
+        style={s`w-24 h-full`}
+      /> */}
       <View style={s`px-3 `}>
-        <Text style={s`w-48  mb-6 font-medium capitalize`}>{name}</Text>
+        <Text style={s`w-48  mb-6 font-medium capitalize`}>{product.name}</Text>
         <View style={s` flex-row items-center`}>
           {/* <Text style={s` mr-5 `}>Quantity</Text> */}
           {quantity === 1 ? (
@@ -78,7 +68,7 @@ const CartProduct = ({
         </View>
       </View>
       <View style={s`flex-row  justify-end flex-1`}>
-        <Text style={s`font-bold`}>€ {totalPrice.toFixed(2)}</Text>
+        {/* <Text style={s`font-bold`}>€ {totalPrice.toFixed(2)}</Text> */}
       </View>
     </View>
   );
