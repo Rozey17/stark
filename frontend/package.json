@@ -41,6 +41,7 @@
     "react-native-slick": "^1.6.0",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-super-grid": "^5.0.0",
+    "react-native-svg": "13.4.0",
     "react-native-toast-message": "^2.1.5",
     "react-native-toast-notifications": "^3.3.1",
     "react-native-web": "~0.18.9",

@@ -92,7 +92,9 @@ const ProductScreen = () => {
 
         <View style={s`mt-5 p-2 mb-10`}>
           <View style={s`flex-row items-center justify-between`}>
-            <Text style={s`font-semibold capitalize text-2xl mb-3`}>
+            <Text
+              style={[{ fontFamily: "jost-bold" }, s`capitalize text-2xl mb-3`]}
+            >
               {product.name}
             </Text>
             <TouchableOpacity
@@ -111,11 +113,20 @@ const ProductScreen = () => {
               )}
             </TouchableOpacity>
           </View>
-          <Text style={s`font-semibold capitalize text-lg mb-3`}>
+          <Text
+            style={[
+              { fontFamily: "jost-semibold" },
+              s` capitalize text-lg mb-3`,
+            ]}
+          >
             € {product.price}
           </Text>
-          <Text style={s`font-bold text-xl `}>Description</Text>
-          <Text style={s``}>{product.description}</Text>
+          <Text style={[{ fontFamily: "jost-bold" }, s` text-xl `]}>
+            Description
+          </Text>
+          <Text style={{ fontFamily: "jost-regular" }}>
+            {product.description}
+          </Text>
 
           <TouchableOpacity
             onPress={() => {
@@ -125,7 +136,14 @@ const ProductScreen = () => {
             style={s`mt-10 w-full rounded p-3  bg-gray-800 flex-row justify-center items-center`}
           >
             <Entypo name="shopping-cart" size={15} color="white" />
-            <Text style={s`text-white text-center ml-3`}>Add to cart</Text>
+            <Text
+              style={[
+                { fontFamily: "jost-medium" },
+                s`text-white text-center ml-3`,
+              ]}
+            >
+              Add to cart
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

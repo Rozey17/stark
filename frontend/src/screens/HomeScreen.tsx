@@ -21,7 +21,7 @@ import { client } from "../lib/sanity.server";
 import { urlForImage } from "../lib/sanity";
 import { addToCart, selectCartItems } from "../features/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "../components/Header";
+import Header from "../components/HomeHeader";
 import Carousel from "../components/Carousel";
 
 const window = Dimensions.get("window");

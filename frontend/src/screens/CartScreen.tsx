@@ -1,12 +1,15 @@
-import { View, ScrollView, Text } from "react-native";
+import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../features/cartSlice";
 import { s } from "react-native-wind";
 import CartProduct from "../components/CartProduct";
 import { Entypo } from "@expo/vector-icons";
+import Navigation from "../navigation";
+import { useNavigation } from "@react-navigation/native";
 
 const CartScreen = () => {
+  const navigation = useNavigation();
   const items = useSelector(selectCartItems);
   const dispatch = useDispatch();
   const [groupedItemsInCart, setgroupedItemsInCart] = useState([]);
@@ -30,6 +33,21 @@ const CartScreen = () => {
           >
             Your cart is empty
           </Text>
+          <TouchableOpacity
+            style={s`py-2 px-4 bg-gray-800 rounded`}
+            //@ts-ignore
+            onPress={() => navigation.navigate("HomeScreen")}
+          >
+            <Text
+              style={{
+                fontFamily: "jost-medium",
+                color: "white",
+                textAlign: "center",
+              }}
+            >
+              Start shopping now
+            </Text>
+          </TouchableOpacity>
         </View>
       )}
       {Object.entries(groupedItemsInCart).map(([key, items]) => (

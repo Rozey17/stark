@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { s } from "react-native-wind";
 import { Entypo } from "@expo/vector-icons";
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
-import Header from "../components/Header";
+import Header from "../components/HomeHeader";
 
 const ShopScreen = ({ navigation }: NativeStackHeaderProps) => {
   return (

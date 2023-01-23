@@ -9,6 +9,7 @@ import Product from "../components/Product";
 import { ScrollView } from "react-native-gesture-handler";
 import { urlForImage } from "../lib/sanity";
 import { FlatGrid } from "react-native-super-grid";
+import Header from "../components/Header";
 
 const DiningScreen = () => {
   const [products, setProducts] = useState([]);
@@ -19,7 +20,7 @@ const DiningScreen = () => {
   useEffect(() => {
     client
       .fetch(
-        `*[_type == 'product' && references(*[_type=="category" && name == 'dining']._id)]`
+        `*[_type == 'product' && references(*[_type=="category" && name == 'Dining']._id)]`
       )
       .then((res) => {
         setProducts(res);
@@ -28,6 +29,8 @@ const DiningScreen = () => {
 
   return (
     <SafeAreaView>
+      <Header arrow={true} title="Dining" />
+
       <FlatGrid
         // itemDimension={130}
         data={itemData}

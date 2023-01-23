@@ -11,6 +11,8 @@ import { urlForImage } from "../lib/sanity";
 import { FlatGrid } from "react-native-super-grid";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Header from "../components/Header";
+import CartIcon from "../components/CartIcon";
 
 const LightingScreen = () => {
   const navigation = useNavigation();
@@ -22,7 +24,7 @@ const LightingScreen = () => {
   useEffect(() => {
     client
       .fetch(
-        `*[_type == 'product' && references(*[_type=="category" && name == 'lighting']._id)]`
+        `*[_type == 'product' && references(*[_type=="category" && name == 'Lighting']._id)]`
       )
       .then((res) => {
         setProducts(res);
@@ -30,13 +32,16 @@ const LightingScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={s`h-full`}>
       {/* <View style={s`p-5 bg-white flex-row justify-between items-center`}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <AntDesign name="arrowleft" size={24} color="black" />
         </TouchableOpacity>
         <Text style={s`font-bold text-center`}>Living</Text>
+        <CartIcon />
       </View> */}
+      <Header arrow={true} title="Living" />
+
       <FlatGrid
         // itemDimension={130}
         data={itemData}

@@ -9,8 +9,10 @@ import Product from "../components/Product";
 import { ScrollView } from "react-native-gesture-handler";
 import { urlForImage } from "../lib/sanity";
 import { FlatGrid } from "react-native-super-grid";
-
+import Header from "../components/Header";
+import { useNavigation } from "@react-navigation/native";
 const TechScreen = () => {
+  const navigation = useNavigation();
   const [products, setProducts] = useState([]);
   // Sample Data
   const itemData = products.map((product) => (
@@ -19,7 +21,7 @@ const TechScreen = () => {
   useEffect(() => {
     client
       .fetch(
-        `*[_type == 'product' && references(*[_type=="category" && name == 'tech']._id)]`
+        `*[_type == 'product' && references(*[_type=="category" && name == 'Tech']._id)]`
       )
       .then((res) => {
         setProducts(res);
@@ -28,6 +30,7 @@ const TechScreen = () => {
 
   return (
     <SafeAreaView>
+      <Header arrow={true} title="Tech" />
       <FlatGrid
         // itemDimension={130}
         data={itemData}
