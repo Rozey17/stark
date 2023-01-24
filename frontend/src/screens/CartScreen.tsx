@@ -14,16 +14,18 @@ const CartScreen = () => {
   const dispatch = useDispatch();
   const [groupedItemsInCart, setgroupedItemsInCart] = useState([]);
 
-  useEffect(() => {
-    const groupedItems = items.reduce((results, item) => {
-      (results[item._id] = results[item._id] || []).push(item);
-      return results;
-    }, {});
-    setgroupedItemsInCart(groupedItems);
-  }, [items]);
+console.log(items);
 
-  return (
-    // <ScrollView showsVerticalScrollIndicator={false}>
+useEffect(() => {
+  const groupedItems = items.reduce((results, item) => {
+    (results[item._id] = results[item._id] || []).push(item);
+    return results;
+  }, {});
+  setgroupedItemsInCart(groupedItems);
+}, [items]);
+
+return (
+  <ScrollView showsVerticalScrollIndicator={false}>
     <View style={s` h-full `}>
       {items.length === 0 && (
         <View style={s`items-center mt-10`}>
@@ -52,11 +54,10 @@ const CartScreen = () => {
       )}
       {Object.entries(groupedItemsInCart).map(([key, items]) => (
         <CartProduct key={key} product={items[0]} quantity={items.length} />
-        // <View></View>
       ))}
     </View>
-    // </ScrollView>
-  );
+  </ScrollView>
+);
 };
 
 export default CartScreen;

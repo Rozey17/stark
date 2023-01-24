@@ -9,6 +9,7 @@ import useCachedResources from "./src/hooks/useCachedResources";
 import { store } from "./src/store";
 import Navigation from "./src/navigation";
 import { ToastProvider } from "react-native-toast-notifications";
+
 export default function App() {
   const isLoadingComplete = useCachedResources();
   if (!isLoadingComplete) {
@@ -20,7 +21,6 @@ export default function App() {
           <Provider store={store}>
             <Navigation />
             <StatusBar style="auto" />
-            <Toast config={toastConfig} />
           </Provider>
         </PaperProvider>
       </ToastProvider>
@@ -37,24 +37,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const toastConfig = {
-  /*
-    Overwrite 'success' type,
-    by modifying the existing `BaseToast` component
-  */
-  success: (props) => (
-    <BaseToast
-      {...props}
-      style={s`bg-green-200 border-l-green-500`}
-      contentContainerStyle={{ padding: 5 }}
-      text1Style={{
-        fontSize: 15,
-        fontWeight: "400",
-        fontFamily: "",
-        color: "#16a34a",
-      }}
-    />
-  ),
-};
+
 
 
