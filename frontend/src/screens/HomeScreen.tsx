@@ -67,9 +67,20 @@ const HomeScreen = ({ navigation }: NativeStackHeaderProps) => {
 
         <View style={s` pr-0`}>
           <View style={s`p-3 flex-row justify-between items-center`}>
-            <Text style={s`capitalize font-bold text-xl mb-3`}>Categories</Text>
+            <Text
+              style={[{ fontFamily: "jost-bold" }, s`capitalize text-xl mb-3`]}
+            >
+              Categories
+            </Text>
             <TouchableOpacity onPress={() => navigation.navigate("Shop")}>
-              <Text style={s`text-gray-500 capitalize`}>Show all</Text>
+              <Text
+                style={[
+                  { fontFamily: "jost-medium" },
+                  s`text-gray-500 capitalize`,
+                ]}
+              >
+                Show all
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={s`pl-3`}>

@@ -10,19 +10,23 @@ const CategoryCard = ({ image, name }: { image: string; name: string }) => {
   const onPressHandler = () => navigation.navigate(`${name}`);
   return (
     <Pressable onPress={onPressHandler}>
-      <Shadow>
-        <View style={s`h-24 w-24 mr-3 rounded-lg overflow-hidden mb-1`}>
-          <Image
-            source={{
-              uri: image,
-            }}
-            style={s`object-contain h-full w-full `}
-          />
-        </View>
-      </Shadow>
+      <View
+        style={s`h-28 w-28 mr-3 rounded-lg overflow-hidden mb-1 shadow border border-gray-300`}
+      >
+        <Image
+          source={{
+            uri: image,
+          }}
+          style={s`object-contain h-full w-full  `}
+        />
+      </View>
 
       <View>
-        <Text style={s`capitalize `}>{name}</Text>
+        <Text
+          style={{ fontFamily: "jost-medium", textTransform: "capitalize" }}
+        >
+          {name}
+        </Text>
       </View>
     </Pressable>
   );

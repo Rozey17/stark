@@ -22,12 +22,11 @@ import Toast from "react-native-toast-message";
 import { Ionicons } from "@expo/vector-icons";
 import { urlForImage } from "../lib/sanity";
 import { addToWishlist, removeFromWishlist } from "../features/wishListSlice";
+import { useToast } from "react-native-toast-notifications";
 
 const ProductScreen = () => {
-  // const {
-  //   //@ts-ignore
-  //   params: { id, name, description, price, image },
-  // } = useRoute();
+  const toast = useToast();
+
   const [selected, setSelected] = useState(false);
   const route = useRoute();
   const { product }: any = route.params || {};
@@ -39,27 +38,6 @@ const ProductScreen = () => {
   //     });
   //   }, []);
 
-  // const showToasts = () => {
-  //   Toast.success("Promised is resolved");
-  // };
-
-  const showToast = () => {
-    Toast.show({
-      type: "success",
-      text1: "added to favorites !",
-      // text2: "This is some something 👋",
-    });
-  };
-
-  const addedToCartToast = () => {
-    Toast.show({
-      type: "success",
-      text1: "added to cart !",
-      // text2: "This is some something 👋",
-      // position: "bottom",
-    });
-  };
-
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
@@ -69,6 +47,27 @@ const ProductScreen = () => {
 
   const itemExist = (product: any) => {
     return wishlist.find((i: any) => i._id === product._id);
+  };
+
+  const addedToWishListHandler = (item) => {
+    dispatch(addToWishlist(item));
+    toast.show("Added to favorites", {
+      // type: "success",
+      placement: "bottom",
+      duration: 4000,
+      // offset: 30,
+      animationType: "zoom-in",
+    });
+  };
+
+  const addedToCartToast = () => {
+    toast.show("Added to cart", {
+      // type: "success",
+      placement: "bottom",
+      duration: 4000,
+      // offset: 30,
+      animationType: "slide-in",
+    });
   };
 
   const removeFromWishlistHandler = (product: any) => {
@@ -125,7 +124,7 @@ const ProductScreen = () => {
               onPress={() => {
                 itemExist(product)
                   ? removeFromWishlistHandler(product)
-                  : dispatch(addToWishlist(product));
+                  : addedToWishListHandler(product);
               }}
               style={s`absolute top-2 right-2`}
             >

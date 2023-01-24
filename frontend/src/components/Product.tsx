@@ -15,10 +15,11 @@ import { addToCart, selectCartItems } from "../features/cartSlice";
 import Like from "./Like";
 import { addToWishlist, removeFromWishlist } from "../features/wishListSlice";
 import { urlForImage } from "../lib/sanity";
+import { useToast } from "react-native-toast-notifications";
 
 const Product = ({ item }) => {
   const navigation = useNavigation();
-
+  const toast = useToast();
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
@@ -26,7 +27,7 @@ const Product = ({ item }) => {
   };
 
   const wishlist = useSelector((state: any) => state.wishlist.list);
-  const productList = useSelector((state: any) => state.cart.list);
+
   const itemExist = (item: any) => {
     return wishlist.find((i: any) => i._id === item._id);
   };
@@ -47,6 +48,17 @@ const Product = ({ item }) => {
         },
       ]
     );
+  };
+
+  const addedToWishListHandler = (item) => {
+    dispatch(addToWishlist(item));
+    toast.show("Added to favorites", {
+      // type: "success",
+      placement: "bottom",
+      duration: 4000,
+      // offset: 30,
+      animationType: "zoom-in",
+    });
   };
   //  const productExist = (item: string) => {
   //    return productList.find((i: string) => i.id === item.id);
@@ -79,7 +91,7 @@ const Product = ({ item }) => {
           onPress={() => {
             itemExist(item)
               ? removeFromWishlistHandler(item)
-              : dispatch(addToWishlist(item));
+              : addedToWishListHandler(item);
           }}
           style={s`absolute top-2 right-2`}
         >

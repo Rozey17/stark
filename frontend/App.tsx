@@ -8,20 +8,22 @@ import { Provider as PaperProvider } from "react-native-paper";
 import useCachedResources from "./src/hooks/useCachedResources";
 import { store } from "./src/store";
 import Navigation from "./src/navigation";
-
+import { ToastProvider } from "react-native-toast-notifications";
 export default function App() {
   const isLoadingComplete = useCachedResources();
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
-      <PaperProvider>
-        <Provider store={store}>
-          <Navigation />
-          <StatusBar style="auto" />
-          <Toast config={toastConfig} />
-        </Provider>
-      </PaperProvider>
+      <ToastProvider>
+        <PaperProvider>
+          <Provider store={store}>
+            <Navigation />
+            <StatusBar style="auto" />
+            <Toast config={toastConfig} />
+          </Provider>
+        </PaperProvider>
+      </ToastProvider>
     );
   }
 }
