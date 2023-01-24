@@ -130,7 +130,7 @@ const ProductScreen = () => {
               style={s`absolute top-2 right-2`}
             >
               {itemExist(product) ? (
-                <FontAwesome name="heart" size={24} color="red" />
+                <FontAwesome name="heart" size={24} color="#ef4444" />
               ) : (
                 <Feather name="heart" size={24} color="black" />
               )}
@@ -142,7 +142,7 @@ const ProductScreen = () => {
               s` capitalize text-lg mb-3`,
             ]}
           >
-            € {product.price}
+            € {product.price.toFixed(2)}
           </Text>
           <Text style={[{ fontFamily: "jost-bold" }, s` text-xl `]}>
             Description

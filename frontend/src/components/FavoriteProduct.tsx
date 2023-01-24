@@ -80,7 +80,7 @@ const FavoriteProduct = ({ product }) => {
         style={s`flex-row flex-1 justify-end`}
       >
         {itemExist(product) ? (
-          <FontAwesome name="heart" size={20} color="red" />
+          <FontAwesome name="heart" size={20} color="#ef4444" />
         ) : (
           <Feather name="heart" size={20} color="black" />
         )}

@@ -84,7 +84,7 @@ const Product = ({ item }) => {
           style={s`absolute top-2 right-2`}
         >
           {itemExist(item) ? (
-            <FontAwesome name="heart" size={20} color="red" />
+            <FontAwesome name="heart" size={20} color="#ef4444" />
           ) : (
             <Feather name="heart" size={20} color="black" />
           )}

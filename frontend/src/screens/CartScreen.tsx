@@ -16,7 +16,7 @@ const CartScreen = () => {
 
   useEffect(() => {
     const groupedItems = items.reduce((results, item) => {
-      (results[item.id] = results[item.id] || []).push(item);
+      (results[item._id] = results[item._id] || []).push(item);
       return results;
     }, {});
     setgroupedItemsInCart(groupedItems);
@@ -34,7 +34,7 @@ const CartScreen = () => {
             Your cart is empty
           </Text>
           <TouchableOpacity
-            style={s`py-2 px-4 bg-gray-800 rounded`}
+            style={s`py-2 w-60 bg-gray-800 rounded`}
             //@ts-ignore
             onPress={() => navigation.navigate("HomeScreen")}
           >
