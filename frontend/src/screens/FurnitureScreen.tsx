@@ -28,7 +28,7 @@ const FurnitureScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={s`h-full`}>
       <Header arrow={true} title="Furniture" />
 
       <FlatGrid

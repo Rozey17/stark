@@ -29,7 +29,7 @@ const TechScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={s`h-full`}>
       <Header arrow={true} title="Tech" />
       <FlatGrid
         // itemDimension={130}

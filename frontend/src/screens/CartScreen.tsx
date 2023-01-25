@@ -60,7 +60,7 @@ const CartScreen = () => {
         {Object.entries(groupedItemsInCart).map(([key, items]) => (
           <CartProduct
             key={key}
-            id={key}
+            id={items[0].product._id}
             product={items[0].product}
             quantity={items.length}
           />

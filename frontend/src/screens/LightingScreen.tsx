@@ -40,7 +40,7 @@ const LightingScreen = () => {
         <Text style={s`font-bold text-center`}>Living</Text>
         <CartIcon />
       </View> */}
-      <Header arrow={true} title="Living" />
+      <Header arrow={true} title="Lighting" />
 
       <FlatGrid
         // itemDimension={130}

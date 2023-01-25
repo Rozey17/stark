@@ -70,7 +70,7 @@ const Product = ({ item }) => {
           //   uri: item.image,
           // }}
           source={{ uri: urlForImage(item.image).url() }}
-          style={s`bg-contain h-full w-full `}
+          style={s`bg-center h-full w-full `}
         />
 
         {/* add to cart button */}

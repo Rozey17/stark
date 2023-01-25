@@ -23,7 +23,7 @@ const CartProduct = ({ id, product, quantity }) => {
   };
   const removeItemFromCart = () => {
     if (quantity <= 0) return;
-    dispatch(removeFromCart({ id }));
+    dispatch(removeFromCart({ product }));
   };
 
   // const totalPrice = price * quantity;

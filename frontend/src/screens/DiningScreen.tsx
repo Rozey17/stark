@@ -28,7 +28,7 @@ const DiningScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={s`h-full`}>
       <Header arrow={true} title="Dining" />
 
       <FlatGrid
