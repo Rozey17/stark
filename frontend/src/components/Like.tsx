@@ -5,19 +5,14 @@ import { Feather, FontAwesome } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishlist, removeFromWishlist } from "../features/wishListSlice";
 import { s } from "react-native-wind";
-
-interface Product {
-  _id: string;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-}
+import { useToast } from "react-native-toast-notifications";
 
 const Like = ({ item }) => {
+  const toast = useToast();
+
   const wishlist = useSelector((state: any) => state.wishlist.list);
   const itemExist = (item: any) => {
-    return wishlist.find((i: any) => i.id === item.id);
+    return wishlist.find((i: any) => i._id === item._id);
   };
 
   const dispatch = useDispatch();
@@ -39,19 +34,32 @@ const Like = ({ item }) => {
       ]
     );
   };
+
+  const addedToWishListHandler = (item) => {
+    dispatch(addToWishlist(item));
+    toast.show("Added to favorites", {
+      // type: "success",
+      placement: "bottom",
+      duration: 4000,
+      // offset: 30,
+      animationType: "zoom-in",
+    });
+  };
+
   return (
     <TouchableOpacity
       onPress={() => {
         itemExist(item)
           ? removeFromWishlistHandler(item)
-          : dispatch(addToWishlist(item));
+          : // : addedToWishListHandler(item);
+            dispatch(addToWishlist(item));
       }}
-      style={s`absolute top-2 right-2 z-10`}
+      style={s`z-2 0`}
     >
       {itemExist(item) ? (
-        <FontAwesome name="heart" size={20} color="red" />
+        <FontAwesome name="heart" size={24} color="red" />
       ) : (
-        <Feather name="heart" size={20} color="black" />
+        <Feather name="heart" size={24} color="black" />
       )}
     </TouchableOpacity>
   );

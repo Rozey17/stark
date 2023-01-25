@@ -23,6 +23,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { urlForImage } from "../lib/sanity";
 import { addToWishlist, removeFromWishlist } from "../features/wishListSlice";
 import { useToast } from "react-native-toast-notifications";
+import Like from "../components/Like";
 
 const ProductScreen = () => {
   const toast = useToast();
@@ -126,7 +127,7 @@ const ProductScreen = () => {
                   ? removeFromWishlistHandler(product)
                   : addedToWishListHandler(product);
               }}
-              style={s`absolute top-2 right-2`}
+              // style={s`absolute top-2 right-2`}
             >
               {itemExist(product) ? (
                 <FontAwesome name="heart" size={24} color="#ef4444" />
@@ -134,6 +135,8 @@ const ProductScreen = () => {
                 <Feather name="heart" size={24} color="black" />
               )}
             </TouchableOpacity>
+
+            {/* <Like item={product} /> */}
           </View>
           <Text
             style={[

@@ -15,11 +15,9 @@ import { addToCart, selectCartItems } from "../features/cartSlice";
 import Like from "./Like";
 import { addToWishlist, removeFromWishlist } from "../features/wishListSlice";
 import { urlForImage } from "../lib/sanity";
-import { useToast } from "react-native-toast-notifications";
 
 const Product = ({ item }) => {
   const navigation = useNavigation();
-  const toast = useToast();
   const dispatch = useDispatch();
 
   const addItemToCart = () => {
@@ -50,16 +48,6 @@ const Product = ({ item }) => {
     );
   };
 
-  const addedToWishListHandler = (item) => {
-    dispatch(addToWishlist(item));
-    toast.show("Added to favorites", {
-      // type: "success",
-      placement: "bottom",
-      duration: 4000,
-      // offset: 30,
-      animationType: "zoom-in",
-    });
-  };
   //  const productExist = (item: string) => {
   //    return productList.find((i: string) => i.id === item.id);
   //  };
@@ -85,34 +73,15 @@ const Product = ({ item }) => {
           style={s`bg-contain h-full w-full `}
         />
 
-        {/* add to favorites button */}
-
-        <TouchableOpacity
-          onPress={() => {
-            itemExist(item)
-              ? removeFromWishlistHandler(item)
-              : addedToWishListHandler(item);
-          }}
-          style={s`absolute top-2 right-2`}
-        >
-          {itemExist(item) ? (
-            <FontAwesome name="heart" size={20} color="#ef4444" />
-          ) : (
-            <Feather name="heart" size={20} color="black" />
-          )}
-        </TouchableOpacity>
-
-        {/* <Like item={item} /> */}
-
         {/* add to cart button */}
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={addItemToCart}
           style={s`absolute bottom-2 right-2`}
         >
           <Entypo name="squared-plus" size={24} color="black" />
-        </TouchableOpacity>
-        {/* <View
+        </TouchableOpacity> */}
+        <View
           style={s`rounded overflow-hidden flex flex-row absolute top-2 left-2 `}
         >
           <View style={s`bg-red-500 px-1 `}>
@@ -121,7 +90,7 @@ const Product = ({ item }) => {
           <View style={s`bg-cyan-600 px-1 `}>
             <Text style={s`text-white text-xs`}>New</Text>
           </View>
-        </View> */}
+        </View>
       </View>
       <View>
         <Text style={[{ fontFamily: "jost-regular" }, s`capitalize `]}>

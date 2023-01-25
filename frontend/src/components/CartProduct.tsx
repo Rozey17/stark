@@ -23,17 +23,17 @@ const CartProduct = ({ product, quantity }) => {
   };
   const removeItemFromCart = () => {
     if (quantity <= 0) return;
-    dispatch(removeFromCart({ product }));
+    dispatch(removeFromCart({ id: product._id }));
   };
 
   // const totalPrice = price * quantity;
 
   return (
     <View style={s`flex-row border-b border-gray-300 p-2`}>
-      <Image
+      {/* <Image
         source={{ uri: urlForImage(product.image).url() }}
         style={s`w-24 h-full`}
-      />
+      /> */}
       <View style={s`px-3 `}>
         <Text style={s`w-48  mb-6 font-medium capitalize`}>{product.name}</Text>
         <View style={s` flex-row items-center`}>
