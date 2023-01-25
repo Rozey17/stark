@@ -11,7 +11,7 @@ import { useRoute } from "@react-navigation/native";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { urlForImage } from "../lib/sanity";
 
-const CartProduct = ({ product, quantity }) => {
+const CartProduct = ({ id, product, quantity }) => {
   // const {
   //   //@ts-ignore
   //   params: { id, name, description, price, image },
@@ -23,7 +23,7 @@ const CartProduct = ({ product, quantity }) => {
   };
   const removeItemFromCart = () => {
     if (quantity <= 0) return;
-    dispatch(removeFromCart({ id: product._id }));
+    dispatch(removeFromCart({ id }));
   };
 
   // const totalPrice = price * quantity;

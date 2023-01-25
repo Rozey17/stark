@@ -14,7 +14,9 @@ const CartScreen = () => {
 
   // console.log(groupedItemsInCart);
   // console.log(items);
-
+  //  {
+  //    Object.entries(groupedItemsInCart).map(([key, items]) => console.log(key));
+  //  }
   useEffect(() => {
     const groupedItems = items.reduce((results, item) => {
       (results[item.product._id] = results[item.product._id] || []).push(item);
@@ -30,12 +32,15 @@ const CartScreen = () => {
           <View style={s`items-center mt-10`}>
             <Entypo name="shopping-cart" size={40} color="black" />
             <Text
-              style={s`p-5 text-center text-gray-700 text-xl font-medium text-center `}
+              style={[
+                { fontFamily: "jost-medium" },
+                s`p-5 text-center text-gray-700 text-xl text-center `,
+              ]}
             >
               Your cart is empty
             </Text>
             <TouchableOpacity
-              style={s`py-2 w-60 bg-gray-800 rounded`}
+              style={s`py-2 w-80 px-6 bg-gray-800 rounded`}
               //@ts-ignore
               onPress={() => navigation.navigate("HomeScreen")}
             >
@@ -44,6 +49,7 @@ const CartScreen = () => {
                   fontFamily: "jost-medium",
                   color: "white",
                   textAlign: "center",
+                  fontSize: 15,
                 }}
               >
                 Start shopping now
@@ -54,6 +60,7 @@ const CartScreen = () => {
         {Object.entries(groupedItemsInCart).map(([key, items]) => (
           <CartProduct
             key={key}
+            id={key}
             product={items[0].product}
             quantity={items.length}
           />
