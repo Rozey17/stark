@@ -1,25 +1,23 @@
 import { View, ScrollView, Text, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectCartItems } from "../features/cartSlice";
 import { s } from "react-native-wind";
 import CartProduct from "../components/CartProduct";
 import { Entypo } from "@expo/vector-icons";
-import Navigation from "../navigation";
 import { useNavigation } from "@react-navigation/native";
 
 const CartScreen = () => {
   const navigation = useNavigation();
   const items = useSelector(selectCartItems);
-  const dispatch = useDispatch();
   const [groupedItemsInCart, setgroupedItemsInCart] = useState([]);
 
-  console.log(groupedItemsInCart);
+  // console.log(groupedItemsInCart);
   // console.log(items);
 
   useEffect(() => {
-    const groupedItems = items.reduce((results, product) => {
-      (results[product.id] = results[product.id] || []).push(product);
+    const groupedItems = items.reduce((results, item) => {
+      (results[item.product._id] = results[item.product._id] || []).push(item);
       return results;
     }, {});
     setgroupedItemsInCart(groupedItems);
@@ -56,12 +54,7 @@ const CartScreen = () => {
         {Object.entries(groupedItemsInCart).map(([key, items]) => (
           <CartProduct
             key={key}
-            product={items[0]}
-            // id={items[0]._id}
-            // description={items[0]?.description}
-            // name={items[0]?.name}
-            // image={items[0]?.image}
-            // price={items[0]?.price}
+            product={items[0].product}
             quantity={items.length}
           />
         ))}
